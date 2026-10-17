@@ -1,44 +1,45 @@
 # CareConsent: Patient-Controlled Health Data and Auditable Sharing
 
-SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF software-development profile · Self-assessed grade 91/100
+SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF software-development profile · Self-assessed grade 90.5/100
 
 ## Team, roles and work distribution
 
 | Member | Student number | E-mail | Administrative roles | Development roles | Planned share |
 | --- | --- | --- | --- | --- | --- |
-| Bahattin Baran Serin | 2300006459 | 2300006459@stu.iku.edu.tr | Team lead, Process facilitator | Smart-contract developer, Back-end developer | 20% |
-| Elif Naz Akdora | 2300003761 | 2300003761@stu.iku.edu.tr | Customer liaison, Documentation lead | Knowledge engineer, Data engineer, Requirements analyst | 20% |
-| Ayset Mammadova | 2300003102 | 2300003102@stu.iku.edu.tr | Quality lead, Work-log steward | Back-end developer, Test engineer | 20% |
-| Enes Malik Çolak | 2200005577 | 2200005577@stu.iku.edu.tr | Repository and release manager | Back-end developer, Architect, Release and operations | 20% |
-| Hasan Samet Yurtbilir | 2100004509 | 2100004509@stu.iku.edu.tr |  | Front-end developer, Interaction and game designer, Smart-contract developer | 20% |
+| Bahattin Baran Serin | 2300006459 | 2300006459@stu.iku.edu.tr |  | Back-end developer, Data engineer, Architect, Release and operations | 20% |
+| Elif Naz Akdora | 2300003761 | 2300003761@stu.iku.edu.tr |  | Front-end developer, Interaction and game designer | 20% |
+| Ayset Mammadova | 2300003102 | 2300003102@stu.iku.edu.tr |  | Knowledge engineer, Data engineer, Back-end developer | 20% |
+| Enes Malik Çolak | 2200005577 | 2200005577@stu.iku.edu.tr |  | Requirements analyst, Technical writer, Test engineer | 20% |
+| Hasan Samet Yurtbilir | 2100004509 | 2100004509@stu.iku.edu.tr |  | Smart-contract developer, Test engineer | 20% |
 
 ### Modules and features
 
 | Module or feature | Kind | What it does | Delivers epic | Responsible member | Second member |
 | --- | --- | --- | --- | --- | --- |
-| Health record import and semantic model | Module | Validate synthetic FHIR R4 resources, map them to RDF, apply project SHACL constraints and maintain an encrypted, versioned record manifest. | Import and model chronic-care records | Elif Naz Akdora · 2300003761 | Ayset Mammadova · 2300003102 |
-| Encrypted storage and record verification | Module | Encrypt each record version with AES-256-GCM, pin ciphertext on a private IPFS network, protect keys off chain and compare retrieved bytes with the registered digest. | Protect and verify stored record versions | Enes Malik Çolak · 2200005577 | Bahattin Baran Serin · 2300006459 |
-| Consent contracts and access gateway | Module | Register patient-controlled grants for a recipient, purpose, selected record versions and expiry; reject access without a currently valid grant. | Enforce patient-controlled sharing permissions | Bahattin Baran Serin · 2300006459 | Enes Malik Çolak · 2200005577 |
-| Clinical query workspace | Module | Run approved SPARQL templates on a temporary graph containing only the consenting patient's selected resources and show the supporting record versions. | Answer bounded clinical-history questions | Ayset Mammadova · 2300003102 | Elif Naz Akdora · 2300003761 |
-| Patient dashboard and access history | Module | Show records, grants, expiry dates and gateway release receipts; reconcile private audit details with blockchain event commitments. | Explain and verify the patient's sharing history | Hasan Samet Yurtbilir · 2100004509 | Ayset Mammadova · 2300003102 |
-| Research sharing and test-credit settlement | Feature | Let a patient separately approve a limited research export and receive one simulated credit payment per approved release, with duplicate settlement prevented. | Demonstrate compensated research sharing within the agreed scope | Hasan Samet Yurtbilir · 2100004509 | Bahattin Baran Serin · 2300006459 |
+| Health record import and semantic model | Module | Research FHIR R4 and the available SNOMED CT terminology subset for conditions, symptoms, medication, allergies and exercise observations. Design the project RDF/OWL model, prepare synthetic patient examples in Turtle and JSON-LD, document FHIR-to-RDF mappings and validate the model with SHACL. Use the labelled local catalogue when licensed terminology is unavailable. Deliver the ontology, mapping documentation and semantic test fixtures. | Import and model chronic-care records | Ayset Mammadova · 2300003102 | Bahattin Baran Serin · 2300006459 |
+| Encrypted storage and record verification | Module | Set up the private IPFS nodes and implement the backend upload and retrieval pipeline: validate input, encrypt each version with AES-256-GCM, pin ciphertext, retain the protected CID manifest and submit the ciphertext digest to the registry. Build APIs connecting storage, the blockchain adapter and the semantic query service. Protect per-record keys and support patient wallet signing without collecting wallet private keys. Verify retrieved bytes before decryption, enforce the gateway's consent checks and exercise the complete storage-to-retrieval flow. Deliver the storage pipeline, backend API and integration documentation. | Protect and verify stored record versions | Bahattin Baran Serin · 2300006459 | Hasan Samet Yurtbilir · 2100004509 |
+| Consent contracts and access gateway | Module | Design and implement the Solidity record registry and consent contracts, including patient ownership checks, grantAccess, revokeAccess, expiry and release-receipt commitments. Register ciphertext digests and opaque identifiers while keeping health contents and keys off chain. Define the contract-to-gateway interface with the backend owner, write contract unit and rejection tests and document the grant, revocation and audit event flows. Deploy the contracts to the local development network and provide the deployment artefacts and test evidence. | Enforce patient-controlled sharing permissions | Hasan Samet Yurtbilir · 2100004509 | Bahattin Baran Serin · 2300006459 |
+| Clinical query workspace | Module | Write and test the five SPARQL templates, including recorded antibiotic use during the previous twelve months. Define the query parameters and permitted result projections with the backend owner, run queries on temporary consent-scoped graphs and prepare manually checked example outputs with source record versions for the report and demo. Deliver the query set, boundary fixtures, expected outputs and query documentation. | Answer bounded clinical-history questions | Ayset Mammadova · 2300003102 | Bahattin Baran Serin · 2300006459 |
+| Patient dashboard and access history | Module | Design wireframes and implement the patient dashboard and clinician/researcher panels. Let patients inspect records, approve or revoke selected-version access with a duration and review gateway release receipts. Let clinicians and researchers request access and use the approved backend query/export flows. Integrate MetaMask wallet connection and signing, display confirmed grant and audit event states and prepare the thirty-day clinician-access demo screens. Deliver the functional frontend, screen flow and UI-to-API integration. | Explain and verify the patient's sharing history | Elif Naz Akdora · 2300003761 | Enes Malik Çolak · 2200005577 |
+| Research sharing and test-credit settlement | Feature | Implement the funded research request and patient test-credit settlement contract logic. Require a separate research grant, accept release attestations only from the trusted gateway, pay the agreed fee once per release identifier and handle duplicate attempts, insufficient funds and expired requests. Work with the frontend and backend owners to connect approval, export and payment states. Deliver tested settlement contracts and the event flow used by the compensation demonstration. | Demonstrate compensated research sharing within the agreed scope | Hasan Samet Yurtbilir · 2100004509 | Enes Malik Çolak · 2200005577 |
+| Project coordination, acceptance tests and demo package | Feature | Define personas, requirements and use cases within the agreed scope; research related work and the blockchain justification; prepare ethics and privacy notes covering GDPR/KVKK questions for review. Coordinate weekly meetings, shared architecture decisions and the integration/testing timeline. Prepare acceptance-test fixtures and a repeatable end-to-end demo script, coordinate execution with all module owners and compile their actual evidence. Maintain the project report, final presentation and rehearsal plan. The demo covers upload, digest registration, a thirty-day clinician grant, the antibiotic query, an audit receipt and automatic expiry. | Demonstrate compensated research sharing within the agreed scope | Enes Malik Çolak · 2200005577 | Elif Naz Akdora · 2300003761 |
 
 ### Process leads
 
-- Mission analysis: Bahattin Baran Serin
-- Stakeholder needs and requirements: Elif Naz Akdora
-- System/software requirements definition: Elif Naz Akdora
-- Architecture definition: Enes Malik Çolak
-- Design definition: Hasan Samet Yurtbilir
-- System analysis: Elif Naz Akdora
-- Implementation: Bahattin Baran Serin
-- Integration: Enes Malik Çolak
-- Verification: Ayset Mammadova
-- Transition: Enes Malik Çolak
-- Validation: Hasan Samet Yurtbilir
-- Operation: Enes Malik Çolak
-- Maintenance: Ayset Mammadova
-- Disposal: Enes Malik Çolak
+- Mission analysis: Enes Malik Çolak
+- Stakeholder needs and requirements: Enes Malik Çolak
+- System/software requirements definition: Enes Malik Çolak
+- Architecture definition: Bahattin Baran Serin
+- Design definition: Elif Naz Akdora
+- System analysis: Ayset Mammadova
+- Implementation: Hasan Samet Yurtbilir
+- Integration: Bahattin Baran Serin
+- Verification: Enes Malik Çolak
+- Transition: Bahattin Baran Serin
+- Validation: Enes Malik Çolak
+- Operation: Bahattin Baran Serin
+- Maintenance: Bahattin Baran Serin
+- Disposal: Bahattin Baran Serin
 
 ### Work log
 
@@ -286,12 +287,12 @@ The mandatory demonstration will use Solidity contracts on Anvil, an isolated Et
 
 | Date | Deliverable | Lead |
 | --- | --- | --- |
-| 2026-10-23 | Freeze the synthetic-data scope, confirm stakeholder and team details, assign modules and agree the record, grant and receipt models. | Bahattin Baran Serin |
-| 2026-11-06 | Complete FHIR fixtures, RDF mapping, terminology catalogue, SHACL checks and the first encrypted IPFS round trip. | Elif Naz Akdora |
-| 2026-11-20 | Integrate record registration, patient-signed grants, expiry, revocation and the access-control matrix on Anvil. | Bahattin Baran Serin |
-| 2026-12-04 | Complete the five query templates, scoped temporary datasets, patient dashboard and release-receipt reconciliation. | Ayset Mammadova |
+| 2026-10-23 | Freeze the synthetic-data scope, confirm stakeholder and team details, assign modules and agree the record, grant and receipt models. | Enes Malik Çolak |
+| 2026-11-06 | Complete FHIR fixtures, RDF mapping, terminology catalogue, SHACL checks and the first encrypted IPFS round trip. | Ayset Mammadova |
+| 2026-11-20 | Integrate record registration, patient-signed grants, expiry, revocation and the access-control matrix on Anvil. | Hasan Samet Yurtbilir |
+| 2026-12-04 | Complete the five query templates, scoped temporary datasets, patient dashboard and release-receipt reconciliation. | Elif Naz Akdora |
 | 2026-12-11 | Complete separate research approvals, funded test-credit settlement and duplicate-payment checks; run the integrated demonstration. | Hasan Samet Yurtbilir |
-| 2026-12-18 | Run acceptance, isolation, failure and latency checks; review against the scope; conduct stakeholder walkthroughs if participants have been secured and record actual findings. | Ayset Mammadova |
+| 2026-12-18 | Run acceptance, isolation, failure and latency checks; review against the scope; conduct stakeholder walkthroughs if participants have been secured and record actual findings. | Enes Malik Çolak |
 | 2026-12-22 | Submit the documented release, reproducible synthetic demonstration and actual final-stage evidence; retain the last days for repairs and submission checks. | Enes Malik Çolak |
 
 | Risk | Likelihood | Impact | Mitigation |
@@ -325,7 +326,7 @@ Repository: https://github.com/baranserin/SpecialTopicsProject_CareConsent — C
 
 | Part | Weight | Grade | Criteria met |
 | --- | --- | --- | --- |
-| Team and work | 10% | 76/100 | 10 of 12 |
+| Team and work | 10% | 71/100 | 9 of 12 |
 | Mission | 20% | 67/100 | 5 of 7 |
 | Scope | 15% | 100/100 | 8 of 8 |
 | Goal | 15% | 100/100 | 7 of 7 |
@@ -333,17 +334,17 @@ Repository: https://github.com/baranserin/SpecialTopicsProject_CareConsent — C
 | Backlog | 20% | 100/100 | 10 of 10 |
 | Course-specific | 5% | 100/100 | 1 of 1 |
 | Plan and references | 5% | 100/100 | 3 of 3 |
-| Overall | 100% | 91/100 |  |
+| Overall | 100% | 90.5/100 |  |
 
 ### Member grades (Proposal)
 
-Project grade 92.7 (60%), team grade 76 (20%), individual contribution (20%).
+Project grade 92.7 (60%), team grade 71 (20%), individual contribution (20%).
 
 | Member | Student number | Individual | Member grade |
 | --- | --- | --- | --- |
-| Bahattin Baran Serin | 2300006459 | 22 | 75.2 |
-| Elif Naz Akdora | 2300003761 | 22 | 75.2 |
-| Ayset Mammadova | 2300003102 | 22 | 75.2 |
-| Enes Malik Çolak | 2200005577 | 22 | 75.2 |
-| Hasan Samet Yurtbilir | 2100004509 | 22 | 75.2 |
+| Bahattin Baran Serin | 2300006459 | 22 | 74.2 |
+| Elif Naz Akdora | 2300003761 | 22 | 74.2 |
+| Ayset Mammadova | 2300003102 | 22 | 74.2 |
+| Enes Malik Çolak | 2200005577 | 22 | 74.2 |
+| Hasan Samet Yurtbilir | 2100004509 | 22 | 74.2 |
 
