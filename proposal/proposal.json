@@ -1,0 +1,894 @@
+{
+ "tool": "proposal_tool",
+ "version": "4.11.0",
+ "stage": "proposal",
+ "stageLabel": "Proposal",
+ "stageFills": "The plan: who the system is for, what it will do, how it will be built and checked, and who does what. Nothing is implemented yet: the Delivery and evidence part stays empty.",
+ "saved": "2026-10-17T10:43:08.515Z",
+ "proposal": {
+  "course": "SEN0401",
+  "semester": "2026-2027 Fall",
+  "tech": [
+   "RDFDataModel",
+   "RDFSchemaLanguage",
+   "OWL2Language",
+   "SPARQLFamily",
+   "SHACLCore",
+   "ApacheJenaFuseki",
+   "PROVOStandard",
+   "CoolURIPractice"
+  ],
+  "stage": "proposal",
+  "projectKinds": [
+   "PK_KGWeb",
+   "PK_ChainProv"
+  ],
+  "modules": [
+   {
+    "name": "Health record import and semantic model",
+    "kind": "module",
+    "what": "Validate synthetic FHIR R4 resources, map them to RDF, apply project SHACL constraints and maintain an encrypted, versioned record manifest.",
+    "epic": "E1",
+    "owner": "Elif Naz Akdora",
+    "second": "Ayset Mammadova"
+   },
+   {
+    "name": "Encrypted storage and record verification",
+    "kind": "module",
+    "what": "Encrypt each record version with AES-256-GCM, pin ciphertext on a private IPFS network, protect keys off chain and compare retrieved bytes with the registered digest.",
+    "epic": "E2",
+    "owner": "Enes Malik Çolak",
+    "second": "Bahattin Baran Serin"
+   },
+   {
+    "name": "Consent contracts and access gateway",
+    "kind": "module",
+    "what": "Register patient-controlled grants for a recipient, purpose, selected record versions and expiry; reject access without a currently valid grant.",
+    "epic": "E3",
+    "owner": "Bahattin Baran Serin",
+    "second": "Enes Malik Çolak"
+   },
+   {
+    "name": "Clinical query workspace",
+    "kind": "module",
+    "what": "Run approved SPARQL templates on a temporary graph containing only the consenting patient's selected resources and show the supporting record versions.",
+    "epic": "E4",
+    "owner": "Ayset Mammadova",
+    "second": "Elif Naz Akdora"
+   },
+   {
+    "name": "Patient dashboard and access history",
+    "kind": "module",
+    "what": "Show records, grants, expiry dates and gateway release receipts; reconcile private audit details with blockchain event commitments.",
+    "epic": "E5",
+    "owner": "Hasan Samet Yurtbilir",
+    "second": "Ayset Mammadova"
+   },
+   {
+    "name": "Research sharing and test-credit settlement",
+    "kind": "feature",
+    "what": "Let a patient separately approve a limited research export and receive one simulated credit payment per approved release, with duplicate settlement prevented.",
+    "epic": "E6",
+    "owner": "Hasan Samet Yurtbilir",
+    "second": "Bahattin Baran Serin"
+   }
+  ],
+  "team": [
+   {
+    "name": "Bahattin Baran Serin",
+    "no": "2300006459",
+    "email": "2300006459@stu.iku.edu.tr",
+    "share": "20",
+    "admin": [
+     "A_TeamLead",
+     "A_Facilitator"
+    ],
+    "dev": [
+     "R_Chain",
+     "R_Backend"
+    ]
+   },
+   {
+    "name": "Elif Naz Akdora",
+    "no": "2300003761",
+    "email": "2300003761@stu.iku.edu.tr",
+    "share": "20",
+    "admin": [
+     "A_CustomerLiaison",
+     "A_DocLead"
+    ],
+    "dev": [
+     "R_Ontologist",
+     "R_Data",
+     "R_Analyst"
+    ]
+   },
+   {
+    "email": "2300003102@stu.iku.edu.tr",
+    "name": "Ayset Mammadova",
+    "no": "2300003102",
+    "share": "20",
+    "admin": [
+     "A_QualityLead",
+     "A_LogSteward"
+    ],
+    "dev": [
+     "R_Backend",
+     "R_Tester"
+    ]
+   },
+   {
+    "email": "2200005577@stu.iku.edu.tr",
+    "name": "Enes Malik Çolak",
+    "no": "2200005577",
+    "share": "20",
+    "admin": [
+     "A_ReleaseManager"
+    ],
+    "dev": [
+     "R_Backend",
+     "R_Architect",
+     "R_Ops"
+    ]
+   },
+   {
+    "name": "Hasan Samet Yurtbilir",
+    "no": "2100004509",
+    "email": "2100004509@stu.iku.edu.tr",
+    "share": "20",
+    "admin": [],
+    "dev": [
+     "R_Frontend",
+     "R_UX",
+     "R_Chain"
+    ]
+   }
+  ],
+  "leads": {
+   "P01": "Bahattin Baran Serin",
+   "P02": "Elif Naz Akdora",
+   "P03": "Elif Naz Akdora",
+   "P04": "Enes Malik Çolak",
+   "P05": "Hasan Samet Yurtbilir",
+   "P06": "Elif Naz Akdora",
+   "P07": "Bahattin Baran Serin",
+   "P08": "Enes Malik Çolak",
+   "P09": "Ayset Mammadova",
+   "P10": "Enes Malik Çolak",
+   "P11": "Hasan Samet Yurtbilir",
+   "P12": "Enes Malik Çolak",
+   "P13": "Ayset Mammadova",
+   "P14": "Enes Malik Çolak"
+  },
+  "repo": "https://github.com/baranserin/SpecialTopicsProject_CareConsent",
+  "worklog": [],
+  "customers": [],
+  "endUsers": [
+   {
+    "group": "Patients",
+    "who": "Adults managing a chronic condition who need to share medication, allergy and symptom histories with more than one care provider; represented by synthetic profiles in the prototype.",
+    "task": "Review their records, choose which versions to share, approve a named recipient for a limited period, revoke access and inspect the release history.",
+    "frequency": "weekly",
+    "device": "Responsive web application on a smartphone or laptop with a development wallet."
+   },
+   {
+    "group": "Clinicians",
+    "who": "Doctors reviewing the longitudinal history of a patient who has explicitly granted them access; represented by separate clinician accounts during testing.",
+    "task": "Request access, inspect permitted records and answer bounded questions about medication use, allergies and recorded observations.",
+    "frequency": "daily",
+    "device": "Laptop or desktop browser through the authenticated clinical workspace."
+   },
+   {
+    "group": "Researchers",
+    "who": "Research staff requesting a specific dataset for a stated study purpose, with each patient's separate approval; represented by test accounts in the demonstration.",
+    "task": "State the research purpose and requested fields, submit an access request, obtain an approved export and inspect the corresponding test-credit receipt.",
+    "frequency": "occasional",
+    "device": "Desktop browser through the research request screen."
+   }
+  ],
+  "problem": "Patients managing a chronic condition may need to assemble medication lists, allergy information and observations from several providers before an appointment. A downloaded report can be forwarded, but it gives the patient little visibility into subsequent access and usually does not express a recipient-specific expiry date. In the United States, the 2024 HINTS survey reported that 59% of individuals had multiple online medical records or patient portals, compared with 50% in 2022 [1]. This is evidence of fragmented access in that population; it is not a measurement of Turkish patients or the project's eventual customer. For a clinician, inconsistent coding and separate documents also make a question such as which antibiotics a patient used in the previous twelve months harder to answer consistently. Research sharing introduces a separate decision: the patient needs to understand the requested data, purpose, duration and any compensation before agreeing. The project will investigate these problems through a bounded prototype and synthetic records. Local task frequency, time spent collecting records and customer priorities still require direct stakeholder validation; no interviews or measured time savings are claimed.",
+  "title": "CareConsent: Patient-Controlled Health Data and Auditable Sharing",
+  "mission": "CareConsent will give Patients a practical way to manage selected health records and decide who may access them, for which purpose and for how long. Clinicians will use consistent, permission-filtered queries to review medication, allergy and observation histories. Encrypted off-chain storage will protect record contents, while smart contracts will register consent changes and commitments to release receipts. A separate research-sharing flow will demonstrate patient approval and compensation using test credits. The semester prototype will use synthetic data and make its trust assumptions and access limits explicit.",
+  "missionOrigin": "IOrigin_Derived",
+  "outcome": "A patient will be able to share selected record versions with a named clinician until a chosen expiry time, withdraw future access and check recorded gateway releases. An authorised clinician will obtain a reproducible medication-history answer with supporting records. A separately approved research export will produce a traceable test-credit payment.",
+  "areas": [
+   {
+    "area": "Health data and semantic model",
+    "where": "FHIR import service, RDF mapping, terminology catalogue and validation rules.",
+    "measure": "No implementation yet; planned evaluation uses 50 synthetic patients and 1,000 clinical resources spanning 24 months."
+   },
+   {
+    "area": "Encrypted storage and integrity",
+    "where": "Private IPFS nodes, off-chain key service and record-version registry contract.",
+    "measure": "No stored prototype records yet; one encrypted object and one integrity commitment per accepted resource version."
+   },
+   {
+    "area": "Consent and access enforcement",
+    "where": "Consent smart contract, authenticated access gateway and role-specific browser screens.",
+    "measure": "No implemented grants yet; three user roles, two declared purposes and a planned matrix of at least 20 access-control cases."
+   },
+   {
+    "area": "Clinical queries and patient audit",
+    "where": "Temporary Jena datasets, predefined SPARQL templates and patient access-history dashboard.",
+    "measure": "No query or audit results yet; five query templates, ten labelled query fixtures and release-to-event reconciliation are planned."
+   },
+   {
+    "area": "Research sharing and evaluation",
+    "where": "Research request screen, test-credit contract, integration checks and reproducible demonstration package.",
+    "measure": "No research exports or payments yet; one-patient exports and at least ten settlement cases are planned."
+   }
+  ],
+  "deliverables": [
+   {
+    "text": "Synthetic FHIR R4 dataset, documented RDF mapping, small project ontology, terminology catalogue and SHACL shapes with valid and invalid fixtures.",
+    "area": "A1",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "AES-256-GCM storage adapter, private IPFS deployment and Solidity registry linking opaque record-version identifiers to ciphertext digests.",
+    "area": "A2",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "Storage checks demonstrating authenticated decryption, tamper rejection and absence of plaintext health fields in blockchain transactions and application logs.",
+    "area": "A2",
+    "layer": "Layer_Product",
+    "kind": "Kind_NonFunctional"
+   },
+   {
+    "text": "Patient-controlled consent contract and access gateway supporting selected versions, named recipients, purpose, expiry and revocation.",
+    "area": "A3",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "Five SPARQL query templates, clinician results with record provenance, and a patient dashboard reconciling gateway release receipts with blockchain commitments.",
+    "area": "A4",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "Separately approved research export with a fixed test-credit fee, patient credit balance and duplicate-settlement protection.",
+    "area": "A5",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "Versioned source, deployment instructions, automated acceptance checks, proposed stakeholder evaluation script and a final demonstration using synthetic data.",
+    "area": "A5",
+    "layer": "Layer_Work",
+    "kind": "Kind_Functional"
+   }
+  ],
+  "exclusions": [
+   {
+    "what": "Live hospital, e-Nabız, insurer and wearable integrations.",
+    "why": "External credentials, institutional agreements and production interfaces are not available; documented FHIR fixtures provide a controlled input boundary."
+   },
+   {
+    "what": "Real patient records, clinical trials and deployment for medical decisions.",
+    "why": "The semester deliverable is a technical prototype using synthetic data; clinical safety and institutional approval are outside the work plan."
+   },
+   {
+    "what": "Diagnosis, treatment recommendations and automatic allergy or drug-interaction advice.",
+    "why": "The system retrieves recorded information and does not establish clinical truth or prescribe care."
+   },
+   {
+    "what": "Public-chain production deployment, real-money payments and a commercial health-data marketplace.",
+    "why": "The research compensation mechanism will be evaluated with valueless credits on a local development chain."
+   },
+   {
+    "what": "Guaranteed deletion of every IPFS copy or revocation of data already downloaded.",
+    "why": "The gateway can stop future authorised releases, but cannot erase copies retained by recipients or unrelated storage nodes."
+   },
+   {
+    "what": "General natural-language question answering and unrestricted public SPARQL endpoints.",
+    "why": "Five reviewed query templates provide a testable scope and reduce disclosure and query-injection risks."
+   },
+   {
+    "what": "Separate athlete application, production wallet recovery and a complete SNOMED CT distribution.",
+    "why": "The first release focuses on chronic-care sharing. Terminology use will be limited to an authorised subset if access is available, with an explicitly labelled local demo catalogue otherwise."
+   }
+  ],
+  "entities": [
+   {
+    "entity": "PatientProfile",
+    "def": "A synthetic patient identifier with ownership links to record versions and grants; it contains no real person's identity.",
+    "create": "yes",
+    "use": "yes",
+    "end": "yes"
+   },
+   {
+    "entity": "HealthRecordVersion",
+    "def": "An immutable version of a Condition, MedicationStatement, AllergyIntolerance or Observation resource, with source, timestamp, encrypted object reference and integrity commitment.",
+    "create": "yes",
+    "use": "yes",
+    "end": "yes"
+   },
+   {
+    "entity": "TerminologyConcept",
+    "def": "A versioned concept used to code a condition, observation or medication class; standard concepts and local demonstration concepts remain distinguishable.",
+    "create": "yes",
+    "use": "yes",
+    "end": "no"
+   },
+   {
+    "entity": "AccessRequest",
+    "def": "A recipient's request naming patient, selected record versions, declared purpose and requested period, optionally including a research fee.",
+    "create": "yes",
+    "use": "yes",
+    "end": "yes"
+   },
+   {
+    "entity": "ConsentGrant",
+    "def": "A patient's authorisation for one recipient and purpose over an explicit immutable set of record versions, ending through expiry or revocation.",
+    "create": "yes",
+    "use": "yes",
+    "end": "yes"
+   },
+   {
+    "entity": "ReleaseReceipt",
+    "def": "An encrypted gateway audit record for an authorised release, including recipient, grant, versions, outcome and time; its commitment is anchored on chain.",
+    "create": "yes",
+    "use": "yes",
+    "end": "no"
+   },
+   {
+    "entity": "ResearchSettlement",
+    "def": "A one-time transfer of valueless development credits from a funded research request to the patient after the gateway confirms an approved export.",
+    "create": "yes",
+    "use": "yes",
+    "end": "yes"
+   }
+  ],
+  "techWhy": "FHIR R4 provides the resource structure for conditions, medication statements, allergies and observations; its RDF representation bridges those resources to graph processing [2]. RDFDataModel represents links between patients, records and grants. RDFSchemaLanguage and a small OWL2Language ontology define project classes and relationships; they do not turn recorded statements into verified medical facts. A licensed SNOMED CT subset may supply selected clinical codes, subject to confirmed access [9]; the reproducible fallback is a clearly labelled local demonstration catalogue. SPARQLFamily is used at the SPARQL 1.1 level for five parameter-bound templates [5]. SHACLCore checks project-specific cardinalities, date ranges and required links, in addition to FHIR resource validation [6]. The ApacheJenaFuseki catalogue entry is used for Apache Jena's embedded, transactional in-memory dataset and SHACL support; no public Fuseki endpoint is planned [10]. PROVOStandard links query results and exports to their source versions and producing activities [7]. CoolURIPractice gives internal resources stable opaque IRIs without publishing patient records. React and TypeScript will provide the screens, a Java Spring Boot service will coordinate validation and access, and Solidity contracts tested with Foundry will run on Anvil. AES-256-GCM ciphertext will be stored on private IPFS nodes; keys and sensitive metadata will remain off chain [4].",
+  "goals": [
+   {
+    "goal": "Represent the selected chronic-care records consistently and reject malformed imports.",
+    "facing": "Facing_Scope",
+    "area": "A1",
+    "why": "Clinical queries need explicit coding, usable dates and reliable links before sharing can be assessed."
+   },
+   {
+    "goal": "Store encrypted record versions and detect changes before any decrypted content is returned.",
+    "facing": "Facing_Scope",
+    "area": "A2",
+    "why": "A blockchain digest is useful only when the actual returned object is checked against it."
+   },
+   {
+    "goal": "Give patients effective control over future gateway access by recipient, purpose, selected versions and time.",
+    "facing": "Facing_Mission",
+    "area": "A3",
+    "why": "A consent screen must correspond to an enforced access decision, including refusal paths."
+   },
+   {
+    "goal": "Provide reproducible clinical-history answers and patient-visible evidence of gateway releases.",
+    "facing": "Facing_Mission",
+    "area": "A4",
+    "why": "The patient and clinician need useful records and an understandable history of the system's sharing actions."
+   },
+   {
+    "goal": "Demonstrate a separately consented research export with one traceable patient test-credit payment.",
+    "facing": "Facing_Scope",
+    "area": "A5",
+    "why": "The proposed patient compensation model needs an observable, bounded workflow before commercial assumptions are considered."
+   },
+   {
+    "goal": "Keep the implementation and evaluation inside the synthetic-data, local-network and predefined-query boundaries.",
+    "facing": "Facing_Containment",
+    "area": "A5",
+    "why": "The semester should deliver the agreed sharing workflow without expanding into hospital integration, clinical decision support or a marketplace."
+   }
+  ],
+  "spec": "The prototype shall support Patients, Clinicians and Researchers as separate authenticated roles. A patient may import synthetic FHIR R4 records, view validation errors and register an accepted encrypted version. Each new version shall receive a fresh encryption key and nonce; its digest shall cover the exact encrypted envelope bytes, avoiding dependence on RDF serialisation order. A patient shall approve a recipient, declared purpose, explicit record-version list and expiry. The contract shall bind that immutable list through a scope commitment, and the gateway shall verify the list against it. Requests shall be denied if the grant is absent, revoked, expired, for another recipient or purpose, or excludes any requested version. The server shall use a short-lived wallet-signature challenge bound to the session and chain. An authorised query shall decrypt only permitted objects into a temporary graph, run a reviewed template and return only its permitted projection. Consent shall be checked again immediately before release. A release receipt commitment shall be confirmed on chain before the response is sent; the receipt describes an authorised release attempt rather than proof that a human read it. If the chain, storage, integrity check or audit anchoring is unavailable, release shall fail closed. A research export shall require its own grant and funded test-credit request. Settlement shall be idempotent and shall rely on the explicitly trusted gateway's release attestation. No private key, clinical text, raw CID or plaintext patient identifier shall be placed on chain. The gateway and key service remain trusted components capable of processing plaintext; this is not a claim of trustless or end-to-end private computation.",
+  "scenarios": [
+   {
+    "kind": "Scen_Nominal",
+    "text": "Given a patient has granted a clinician access to selected medication records for treatment until tomorrow, when that clinician runs the antibiotics template within the permitted interval, then only matching permitted records are returned with source versions and a confirmed release receipt commitment."
+   },
+   {
+    "kind": "Scen_Rejection",
+    "text": "Given the patient has revoked a clinician's grant, when the clinician repeats a previously successful request, then the gateway refuses it before decryption or result release and exposes no clinical fields."
+   },
+   {
+    "kind": "Scen_Boundary",
+    "text": "Given a grant expires at time T according to the latest confirmed local-chain block, when access is evaluated at T minus one second it may pass, and when evaluated at T it must fail; authorisation requires current time strictly less than expiry."
+   },
+   {
+    "kind": "Scen_Rejection",
+    "text": "Given a researcher holds a treatment-only grant or asks for an unselected allergy record, when an export is requested, then the purpose or scope mismatch is rejected and no credit settlement occurs."
+   },
+   {
+    "kind": "Scen_Rejection",
+    "text": "Given an encrypted object differs from its anchored digest or fails authenticated decryption, when a permitted recipient requests it, then the object is rejected without returning any partial plaintext."
+   },
+   {
+    "kind": "Scen_Absent",
+    "text": "Given a valid grant covers a patient with no antibiotic records in the requested interval, when the template runs, then the workspace displays an explicit no-matching-records result, distinct from denied access or missing storage."
+   },
+   {
+    "kind": "Scen_Rejection",
+    "text": "Given the chain cannot confirm a release receipt, when an otherwise authorised response is prepared, then the gateway returns a service-unavailable result without releasing clinical content or settling research credits."
+   }
+  ],
+  "useCase": "Patients: import records, review validation errors, inspect versions, approve or refuse requests, revoke future access, inspect release receipts and approve research compensation terms. Clinicians: request treatment access, choose a permitted patient and interval, run one of five clinical templates and inspect the supporting resource versions. Researchers: request a specific one-patient export for a stated study purpose, fund the test-credit request and obtain the separately approved export. The gateway verifies identity, consent, scope, time and ciphertext integrity before each release. Neither a role label nor possession of an IPFS reference is sufficient authorisation.",
+  "objectives": [
+   {
+    "objective": "Validate and map the planned synthetic evaluation dataset.",
+    "goal": "G1",
+    "mkind": "Meas_Counted",
+    "query": "A reproducible validation run counts accepted resources, linked patient profiles, mapped resource types and rejected negative fixtures. Expected resource identifiers are compared before and after mapping.",
+    "baseline": "0 imported or mapped prototype records; no validation run has been performed.",
+    "target": "50 synthetic patient profiles and 1,000 valid clinical resources mapped; all 20 deliberately malformed fixtures rejected with a specific reason.",
+    "dir": "Dir_Increase"
+   },
+   {
+    "objective": "Verify every accepted encrypted version and reject tampered objects.",
+    "goal": "G2",
+    "mkind": "Meas_Derived",
+    "query": "For all 1,000 resource versions, compare SHA-256 of the retrieved encrypted envelope with its registry commitment and attempt authenticated decryption. Repeat with 20 mutated objects and incorrect keys.",
+    "baseline": "0 verified prototype versions; integrity and encryption checks are not implemented.",
+    "target": "1,000 successful round trips for valid versions, 20 of 20 tampered or wrong-key cases rejected, and no plaintext clinical fields found in the inspected chain and application logs.",
+    "dir": "Dir_Increase"
+   },
+   {
+    "objective": "Enforce the complete consent decision matrix.",
+    "goal": "G3",
+    "mkind": "Meas_Derived",
+    "query": "Execute at least 20 cases spanning valid grants, wrong recipient, wrong purpose, missing grant, excluded version, expiry boundary, revocation, replay and concurrent revoke-before-release. Inspect responses and key-service calls.",
+    "baseline": "0 implemented or executed access-control cases.",
+    "target": "100% of specified denial cases return no clinical result or decryption key, and every specified valid case succeeds when dependencies are available.",
+    "dir": "Dir_Increase"
+   },
+   {
+    "objective": "Return correct permission-filtered answers and reconcile release receipts.",
+    "goal": "G4",
+    "mkind": "Meas_Derived",
+    "query": "Compare five templates over ten manually labelled synthetic query fixtures with expected record identifiers; join all successful gateway release attempts to event commitments. Measure 100 authorised local requests, excluding initial import, on a documented machine.",
+    "baseline": "0 verified query fixtures or reconciled release receipts; response latency is not yet measured.",
+    "target": "10 of 10 fixtures match exactly, no cross-patient or out-of-scope result appears, 100% of successful release attempts have a matching event commitment, and local p95 response time is at most 3 seconds.",
+    "dir": "Dir_Increase"
+   },
+   {
+    "objective": "Settle approved research sharing once per release identifier.",
+    "goal": "G5",
+    "mkind": "Meas_Derived",
+    "query": "Execute ten settlement cases covering a funded approved export, refusal, expiry, insufficient funds, an untrusted attester and duplicate retries. Compare the patient's credit balance with settlement events.",
+    "baseline": "0 approved exports and 0 settlement cases implemented or executed.",
+    "target": "All ten cases match their expected outcomes; an approved export credits its stated fee exactly once, while denied and unfunded requests transfer nothing.",
+    "dir": "Dir_Increase"
+   },
+   {
+    "objective": "Deliver a reproducible prototype without crossing the agreed scope boundaries.",
+    "goal": "G6",
+    "mkind": "Meas_Counted",
+    "query": "Review every merged feature against A1-A5 and E1-E6; inspect fixtures, configuration and the demonstration script for real records, public deployment, real-money transfers and unplanned integrations.",
+    "baseline": "0 implementation artefacts reviewed; the project is at proposal stage.",
+    "target": "Every merged feature traces to a planned epic, all acceptance fixtures are synthetic, and zero excluded integrations or real-money features are required by the release.",
+    "dir": "Dir_Hold"
+   }
+  ],
+  "activity": "Start -> authenticate the account with a fresh wallet challenge -> choose import, access request or patient review. Import branch: validate FHIR and project shapes; on failure show field-level errors and stop; on success encrypt a new version, pin ciphertext, confirm the digest registration and show it in the manifest. Sharing branch: a recipient submits scope, purpose and duration; the patient refuses or signs a grant. Access branch: check confirmed grant state and scope; on failure return denial; on success fetch and verify ciphertext, decrypt into a temporary dataset and run the selected query or export projection. Recheck consent immediately before release; if it changed, discard the prepared response. Otherwise confirm a receipt commitment and send the result. For a funded research export, record one settlement using the release identifier. Close the temporary dataset after either success or failure. Expiry and revocation block later releases, while earlier receipts remain visible.",
+  "sequence": "Patient browser -> gateway: signed challenge and synthetic FHIR import. Gateway -> validator: resource and shape checks. Gateway -> key service: generate and wrap a per-version key. Gateway -> private IPFS: encrypted envelope; IPFS -> gateway: CID. Patient browser -> registry contract: sign registration of an opaque version identifier and ciphertext digest. Clinician browser -> gateway: request named versions for treatment. Patient browser -> consent contract: sign the recipient, scope commitment, purpose and expiry. Clinician browser -> gateway: run a query template with a grant identifier. Gateway -> contract: read current confirmed grant. Gateway -> IPFS and key service: fetch verified ciphertext and unwrap authorised keys. Gateway -> embedded Jena: build the scoped temporary dataset and execute the bound template. Gateway -> contract: recheck permission and anchor a release receipt commitment. After confirmation, gateway -> clinician: projected result and receipt reference. Gateway closes the dataset. The research variant adds an approved funded request and an idempotent gateway-attested settlement transaction.",
+  "initiativeKind": "Kind_InitialDevelopment",
+  "epics": [
+   {
+    "epic": "Import and model chronic-care records",
+    "objective": "O1"
+   },
+   {
+    "epic": "Protect and verify stored record versions",
+    "objective": "O2"
+   },
+   {
+    "epic": "Enforce patient-controlled sharing permissions",
+    "objective": "O3"
+   },
+   {
+    "epic": "Answer bounded clinical-history questions",
+    "objective": "O4"
+   },
+   {
+    "epic": "Explain and verify the patient's sharing history",
+    "objective": "O4"
+   },
+   {
+    "epic": "Demonstrate compensated research sharing within the agreed scope",
+    "objective": "O5"
+   }
+  ],
+  "stories": [
+   {
+    "epic": "E1",
+    "role": "Patients",
+    "want": "import a structured medication, allergy, condition or observation record",
+    "so": "my selected health history can be interpreted consistently",
+    "ac": "Given a supported synthetic FHIR record with a valid patient reference, when I import it, then the system accepts it and creates a traceable RDF representation; an invalid record instead returns a field-specific error without registration.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Data",
+    "bv": 9,
+    "tc": 8,
+    "rr": 8,
+    "js": 5
+   },
+   {
+    "epic": "E2",
+    "role": "Patients",
+    "want": "store an encrypted and verifiable version of each accepted record",
+    "so": "storage nodes cannot read its clinical contents and later changes can be detected",
+    "ac": "Given an accepted record, when it is stored, then only an authenticated encrypted envelope is pinned and its digest is registered; a changed envelope or wrong key prevents all plaintext release.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Architecture",
+    "bv": 10,
+    "tc": 9,
+    "rr": 10,
+    "js": 7
+   },
+   {
+    "epic": "E3",
+    "role": "Patients",
+    "want": "grant a named clinician access to selected versions until a chosen expiry",
+    "so": "sharing is limited to the appointment's needs",
+    "ac": "Given a request for selected medication versions, when I sign a treatment grant, then only that recipient, purpose and immutable version list is authorised before expiry; a different recipient or additional version is denied.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Security",
+    "bv": 10,
+    "tc": 10,
+    "rr": 10,
+    "js": 6
+   },
+   {
+    "epic": "E3",
+    "role": "Patients",
+    "want": "revoke an existing grant",
+    "so": "future releases through the application stop",
+    "ac": "Given a currently valid grant, when my revocation transaction is confirmed, then every subsequent release check denies that grant, including a prepared response awaiting its final check; the interface explains that earlier downloaded copies remain outside this control.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Security",
+    "bv": 10,
+    "tc": 9,
+    "rr": 10,
+    "js": 5
+   },
+   {
+    "epic": "E3",
+    "role": "Clinicians",
+    "want": "see whether my requested access is pending, active, refused, expired or revoked",
+    "so": "I understand whether a patient-authorised review is available",
+    "ac": "Given I have submitted a request, when I open its status, then the application shows the current request and grant state without exposing any health fields before permission is active.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Interaction",
+    "bv": 7,
+    "tc": 6,
+    "rr": 7,
+    "js": 3
+   },
+   {
+    "epic": "E4",
+    "role": "Clinicians",
+    "want": "list recorded antibiotic use overlapping the previous twelve months",
+    "so": "I can review the permitted medication history before consultation",
+    "ac": "Given a valid medication grant and a fixed evaluation interval, when I run the antibiotic template, then it returns exactly the permitted matching MedicationStatement versions, excludes entered-in-error records and includes their source dates and versions; a prescription alone is not presented as confirmed use.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Interface",
+    "bv": 9,
+    "tc": 7,
+    "rr": 8,
+    "js": 5
+   },
+   {
+    "epic": "E4",
+    "role": "Clinicians",
+    "want": "review active recorded conditions, active allergies and dated symptom or exercise observations",
+    "so": "I can inspect a coherent permitted history without opening separate reports",
+    "ac": "Given grants covering the relevant record types, when I run each of the four remaining templates, then the results match the labelled fixtures and contain only permitted patient records; an empty match is distinguished from denial or a missing object.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Data",
+    "bv": 8,
+    "tc": 6,
+    "rr": 7,
+    "js": 5
+   },
+   {
+    "epic": "E5",
+    "role": "Patients",
+    "want": "inspect who received records through the gateway and when",
+    "so": "I can review the application's sharing actions",
+    "ac": "Given an authorised release attempt, when I open its history entry, then I see the recipient, purpose, versions, time and a receipt commitment matching a confirmed chain event; the entry does not claim to prove later human viewing or onward sharing.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Interface_UI",
+    "bv": 9,
+    "tc": 7,
+    "rr": 8,
+    "js": 5
+   },
+   {
+    "epic": "E6",
+    "role": "Researchers",
+    "want": "request a narrow dataset for a stated study purpose and test-credit fee",
+    "so": "the patient can make a separate informed sharing decision",
+    "ac": "Given no research grant exists, when I request an export with selected versions, requested fields, expiry and fee, then the patient sees those terms and can approve or refuse; a treatment grant cannot authorise this export.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Interface_UI",
+    "bv": 7,
+    "tc": 5,
+    "rr": 8,
+    "js": 5
+   },
+   {
+    "epic": "E6",
+    "role": "Patients",
+    "want": "receive the agreed test-credit fee once for an approved research release",
+    "so": "the proposed compensation flow is transparent and checkable",
+    "ac": "Given an approved research grant and sufficient funded test credits, when the trusted gateway attests an authorised export release, then the contract credits the stated fee to my development account once and emits a settlement event; repeating the same release identifier cannot pay again.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Security",
+    "bv": 7,
+    "tc": 4,
+    "rr": 8,
+    "js": 6
+   },
+   {
+    "epic": "E2",
+    "role": "Patients",
+    "want": "create a corrected version without silently changing earlier records",
+    "so": "the history remains traceable and old permissions do not silently expand",
+    "ac": "Given a registered version and a grant covering it, when I import a correction, then a new version with a fresh key and digest is created; the earlier commitment remains, and sharing the correction requires explicit inclusion in a new grant.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Data",
+    "bv": 8,
+    "tc": 6,
+    "rr": 9,
+    "js": 4
+   },
+   {
+    "epic": "E5",
+    "role": "Patients",
+    "want": "receive a clear failure message when a safe release cannot be completed",
+    "so": "I can distinguish a system problem from an empty medical history",
+    "ac": "Given storage is missing or the chain cannot confirm the receipt, when a recipient asks for my records, then the gateway releases no clinical content, returns a distinct unavailable result and leaves the request eligible for a safe retry.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Interface",
+    "bv": 8,
+    "tc": 7,
+    "rr": 9,
+    "js": 4
+   }
+  ],
+  "dod": [
+   {
+    "criterion": "The story meets its specified nominal and refusal outcomes.",
+    "check": "Run its linked acceptance cases against a clean synthetic fixture set; attach actual results and evidence at final submission."
+   },
+   {
+    "criterion": "Authorisation is enforced at the gateway and contract boundary.",
+    "check": "Review recipient, purpose, version list, time and revocation checks; denial cases must expose no health result or key."
+   },
+   {
+    "criterion": "Stored and returned versions are traceable and verifiable.",
+    "check": "Check encrypted-envelope digest verification and the link from result to source version and confirmed receipt event."
+   },
+   {
+    "criterion": "Sensitive content stays out of public interfaces and routine logs.",
+    "check": "Inspect transaction calldata, events, browser responses, application logs and storage objects using planted synthetic identifiers and clinical strings."
+   },
+   {
+    "criterion": "The work is reproducible and within scope.",
+    "check": "A second team member can follow the setup instructions, replay the synthetic demonstration and identify the epic and module for the change."
+   },
+   {
+    "criterion": "The feature has a named owner, peer review and usable screens.",
+    "check": "Before implementation is accepted, assign actual team members, review the change and walk through success, empty, denied and unavailable states."
+   }
+  ],
+  "classModel": "PatientProfile(patientId, ownerAccount) owns 0..* HealthRecordVersion(versionId, resourceType, recordedAt, status, ciphertextDigest, replacesVersion). A version belongs to exactly one patient. Its protected StorageManifest entry holds CID, wrappedKeyRef and the RDF mapping version; these fields are not public contract data. TerminologyConcept(system, code, label, catalogueVersion) codes record properties. AccessRequest(requestId, requester, purpose, requestedVersionList, requestedUntil, fee) may produce one ConsentGrant(grantId, owner, grantee, purposeCode, scopeCommitment, expiresAt, revoked). The immutable encrypted scope manifest resolves the commitment to versions. ReleaseReceipt(releaseId, grantId, requester, versions, releasedAt, outcome, eventTx) describes a gateway release attempt. PROV-O links a query or export activity to its source versions and output. ResearchSettlement(releaseId, fee, patientAccount, settled) references one approved research release. Superseded records remain historically identifiable; retiring a record removes it from new selection without rewriting its earlier chain commitment.",
+  "tests": [
+   {
+    "story": "S1",
+    "case": "Accept supported records and reject malformed imports before storage registration.",
+    "data": "Valid synthetic Condition, MedicationStatement, AllergyIntolerance and Observation resources; 20 negative fixtures with missing patient links, invalid types, unsupported modifiers or inconsistent dates."
+   },
+   {
+    "story": "S2",
+    "case": "Round-trip valid ciphertext and reject tampering or wrong-key decryption.",
+    "data": "1,000 generated clinical resources; 20 altered envelopes or incorrect keys; two encryptions of the same resource to check fresh nonce/key use."
+   },
+   {
+    "story": "S3",
+    "case": "Enforce recipient, purpose, scope and expiry on direct API calls as well as UI requests.",
+    "data": "Patient P01, two clinician accounts, one researcher, selected medication versions and an excluded allergy version; evaluate at expiry minus one second and exactly expiry."
+   },
+   {
+    "story": "S4",
+    "case": "Reject new access and a prepared response after confirmed revocation.",
+    "data": "One active grant, a confirmed revoke transaction and a controlled pause before the gateway's final permission check; replay the prior request after revocation."
+   },
+   {
+    "story": "S5",
+    "case": "Show each request state without disclosing clinical payloads.",
+    "data": "Pending, refused, active, expired and revoked fixtures; inspect both rendered status and network responses."
+   },
+   {
+    "story": "S6",
+    "case": "Return the exact allowed antibiotic record identifiers at temporal boundaries.",
+    "data": "Evaluation time 2026-12-01T00:00:00Z and interval [2025-12-01T00:00:00Z, 2026-12-01T00:00:00Z); include overlapping use periods, non-antibiotics, entered-in-error statements, excluded versions and another patient."
+   },
+   {
+    "story": "S7",
+    "case": "Check the four remaining templates against labelled results and handle an empty permitted graph.",
+    "data": "Active and inactive conditions and allergies, symptom observations, exercise observations, different units, missing optional fields and a patient with no matching records; ten query fixtures in total across S6-S7."
+   },
+   {
+    "story": "S8",
+    "case": "Reconcile private receipt details with confirmed event commitments and detect receipt modification.",
+    "data": "Successful releases for two recipients, one altered receipt and one interrupted response after anchoring; label the latter as an attempted release with delivery unconfirmed."
+   },
+   {
+    "story": "S9",
+    "case": "Require separate research approval and show requested fields, purpose, duration and fee.",
+    "data": "A valid treatment grant, no research grant, a pending research request and approved/refused variants; selected direct-identifier fields must be excluded from the research projection."
+   },
+   {
+    "story": "S10",
+    "case": "Pay the approved fee once and reject unfunded, unauthorised and repeated settlements.",
+    "data": "Ten settlement fixtures using valueless local credits, including sufficient funds, insufficient funds, wrong attester, expired grant, missing release attestation and duplicate release identifiers."
+   },
+   {
+    "story": "S11",
+    "case": "Keep old commitments intact and require fresh consent for a corrected version.",
+    "data": "Two versions of one medication statement with distinct keys, nonces, digests and CIDs; an existing grant names only the first version."
+   },
+   {
+    "story": "S12",
+    "case": "Fail closed on storage, key-service or chain failure and retry safely.",
+    "data": "Unavailable IPFS object, failed key unwrap, rejected audit transaction, stale chain connection and a repeated request with the same release identifier."
+   }
+  ],
+  "model_Architecture": "Component model: [React browser] -> [Spring Boot access gateway] -> [FHIR validator and RDF mapper], [embedded Jena dataset], [private IPFS adapter], [key service] and [EVM contract adapter]. The patient wallet signs registrations and grants; the gateway cannot create patient consent. Solidity contracts hold version commitments, grant state and test-credit settlements. IPFS holds encrypted envelopes. The key service and gateway form a trusted plaintext-processing boundary. Query datasets exist only for an authorised operation and are closed afterwards; no persistent plaintext clinical triplestore is planned.",
+  "model_Data": "Design class model: PatientProfile 1 -> many HealthRecordVersion; HealthRecordVersion many -> many TerminologyConcept; AccessRequest 0..1 -> ConsentGrant; ConsentGrant 1 -> one immutable ScopeManifest containing selected version identifiers; ConsentGrant 1 -> many ReleaseReceipt; ReleaseReceipt 0..1 -> ResearchSettlement. Ciphertext storage, wrapped keys and receipt details are off chain. Opaque identifiers, ciphertext digests, scope commitments, expiry, revocation and settlement identifiers form contract state. Version updates create new objects and never mutate a previously committed version.",
+  "model_Security": "Grant state machine: Unapproved -> Active only after the owner signs and the transaction is confirmed. Unapproved -> Refused when the patient rejects the request. Active -> Revoked through an owner transaction, or Active -> Expired when confirmed chain time reaches expiresAt. Revoked, Expired and Refused cannot authorise release; a new request requires a new grant. Release state machine: Requested -> Checked -> Prepared -> Rechecked -> ReceiptConfirmed -> ResponseAttempted. Any failed identity, scope, purpose, integrity or dependency check moves to Denied or Unavailable with no content release. A revocation confirmed before the final release check blocks the response; races after that check remain an explicit boundary. Signed challenges use a nonce, domain, chain identifier and short expiry to prevent replay.",
+  "model_Interaction": "Sequence model for a clinician request: clinician -> gateway submits selected versions and treatment purpose; gateway -> patient dashboard presents the request; patient -> wallet signs approval; wallet -> consent contract submits the grant; contract confirmation -> dashboard changes status to active. The clinician then requests a template result. The gateway checks consent, prepares the scoped answer, repeats the permission check and confirms an audit commitment before attempting delivery. Refusal, expiry and revocation produce distinct status messages. Research requests follow the same decision path with a separate purpose and explicit fee.",
+  "model_Interface": "Interface component model: browser clients call authenticated endpoints for imports, requests, grants, predefined queries, research exports and audit history. Query input is a template identifier plus validated patient, grant and date parameters; arbitrary SPARQL text, SERVICE federation and update operations are unavailable. The contract adapter provides registerVersion, grantAccess, revokeGrant, recordRelease and settleResearch operations with explicit caller checks. The storage adapter accepts and returns encrypted envelopes only. API results distinguish validation failure, access denial, no match, integrity failure and dependency unavailability without exposing internal key material or unselected resource fields.",
+  "model_User_interface": "Storyboard: sign in -> patient record list -> select versions -> review recipient, purpose and expiry -> wallet confirmation -> grant detail with revoke action -> release history. The clinician workspace shows pending permission before enabling its five query templates. Results display the evaluated interval and supporting versions. The research request screen adds the requested projection and test-credit fee, followed by a separate approval page. Empty results, denied access and unavailable services have different messages. The history screen describes gateway release attempts and explains that downloaded copies cannot be recalled. Labels and controls will support keyboard use on laptop and mobile layouts.",
+  "chainDesign": "The mandatory demonstration will use Solidity contracts on Anvil, an isolated Ethereum-compatible development node operated by the team [8]. This removes faucet and transaction-cost dependencies and supports reproducible expiry and failure tests. Anvil is a development environment, not evidence of decentralised production consensus or resistance to a malicious node operator. The registry will anchor a SHA-256 digest of each exact encrypted envelope and an opaque version identifier. The consent contract will store an owner, recipient, purpose code, immutable version-set commitment, expiry and revocation state; sensitive scope details and raw CIDs remain off chain. The gateway will enforce those decisions before decrypting or returning results, while an allowlisted gateway signer anchors commitments to private release receipts. Record contents and keys are never placed in contract storage. Blockchain is included because a deployed shared ledger can give patients, providers and researchers a common history of consent changes, registered versions and settlement events that one application database administrator cannot silently rewrite. A conventional signed audit database would be simpler if every party accepted one operator; that trade-off will be stated in the evaluation. Neither a digest nor an event proves medical accuracy, hospital deletion, actual human viewing or the absence of onward sharing. A small test-credit ledger will model compensation: the researcher funds a stated fee, the patient approves the research grant, and an authorised gateway attestation permits one settlement for the release identifier. Unused expired requests can refund their funding. The gateway is trusted for release attestation, and credit payment does not prove that an external recipient received or used the data. Contracts will use explicit authorisation checks, replay-resistant identifiers, checked state transitions and idempotent settlement tests. The prototype's benefit will be assessed through these observable workflows rather than claims of full decentralisation or automatic legal compliance.",
+  "milestones": [
+   {
+    "date": "2026-10-23",
+    "deliverable": "Freeze the synthetic-data scope, confirm stakeholder and team details, assign modules and agree the record, grant and receipt models.",
+    "owner": "Bahattin Baran Serin"
+   },
+   {
+    "date": "2026-11-06",
+    "deliverable": "Complete FHIR fixtures, RDF mapping, terminology catalogue, SHACL checks and the first encrypted IPFS round trip.",
+    "owner": "Elif Naz Akdora"
+   },
+   {
+    "date": "2026-11-20",
+    "deliverable": "Integrate record registration, patient-signed grants, expiry, revocation and the access-control matrix on Anvil.",
+    "owner": "Bahattin Baran Serin"
+   },
+   {
+    "date": "2026-12-04",
+    "deliverable": "Complete the five query templates, scoped temporary datasets, patient dashboard and release-receipt reconciliation.",
+    "owner": "Ayset Mammadova"
+   },
+   {
+    "date": "2026-12-11",
+    "deliverable": "Complete separate research approvals, funded test-credit settlement and duplicate-payment checks; run the integrated demonstration.",
+    "owner": "Hasan Samet Yurtbilir"
+   },
+   {
+    "date": "2026-12-18",
+    "deliverable": "Run acceptance, isolation, failure and latency checks; review against the scope; conduct stakeholder walkthroughs if participants have been secured and record actual findings.",
+    "owner": "Ayset Mammadova"
+   },
+   {
+    "date": "2026-12-22",
+    "deliverable": "Submit the documented release, reproducible synthetic demonstration and actual final-stage evidence; retain the last days for repairs and submission checks.",
+    "owner": "Enes Malik Çolak"
+   }
+  ],
+  "risks": [
+   {
+    "risk": "No real commissioning customer or stakeholder participants have been confirmed.",
+    "likelihood": "high",
+    "impact": "high",
+    "mitigation": "Secure a reachable patient representative, care unit or research group early; record the actual contact and priorities. If external walkthroughs cannot be arranged, report that limitation and keep technical acceptance separate from user validation."
+   },
+   {
+    "risk": "SNOMED CT access or redistribution permission may not be available in time.",
+    "likelihood": "medium",
+    "impact": "medium",
+    "mitigation": "Confirm the applicable licence and permitted subset before including terminology content. Keep FHIR mappings independent and use a labelled local demo catalogue for the reproducible release if authorisation is unavailable."
+   },
+   {
+    "risk": "A compromised gateway or key service could expose plaintext despite blockchain permissions.",
+    "likelihood": "medium",
+    "impact": "high",
+    "mitigation": "Treat those services as explicit trust boundaries, isolate key storage, avoid plaintext persistence and logs, use short-lived processing and check every release. Document that ledger consent cannot constrain a malicious key holder."
+   },
+   {
+    "risk": "A stale permission read or revocation race could release prepared data after the patient changes consent.",
+    "likelihood": "medium",
+    "impact": "high",
+    "mitigation": "Use confirmed chain state, recheck immediately before release, refuse stale or unavailable state and exercise a controlled concurrent-revocation test. State the residual race boundary after the final check."
+   },
+   {
+    "risk": "IPFS objects may be unavailable, and removing a pin does not erase every retained copy.",
+    "likelihood": "medium",
+    "impact": "high",
+    "mitigation": "Use team-controlled private nodes, pin encrypted objects on two nodes, keep an encrypted backup and test retrieval failure. Avoid deletion guarantees and explain that revocation limits later gateway releases only."
+   },
+   {
+    "risk": "Incorrect terminology mapping or date handling may produce misleading query results.",
+    "likelihood": "medium",
+    "impact": "high",
+    "mitigation": "Version the small catalogue, validate UTC intervals and resource status, use manually labelled boundary fixtures and show supporting source records. Do not interpret a prescription as proof of medication use."
+   },
+   {
+    "risk": "Contract errors or repeated requests may create duplicate credit payments.",
+    "likelihood": "medium",
+    "impact": "medium",
+    "mitigation": "Use valueless credits, an explicit funded-request state machine, an allowlisted attester and a unique settled release identifier; test insufficient funds, unauthorised calls and retries."
+   },
+   {
+    "risk": "The remaining semester may be too short for broad integrations or polished secondary features.",
+    "likelihood": "medium",
+    "impact": "high",
+    "mitigation": "Freeze the five-template synthetic prototype, complete storage and consent before research settlement, assign an owner and second member for every module and reserve the final days for repairs."
+   },
+   {
+    "risk": "A local chain can be reset by its operator, limiting the audit guarantee demonstrated.",
+    "likelihood": "medium",
+    "impact": "medium",
+    "mitigation": "Publish reproducible chain configuration and saved test receipts, state the local operator assumption and evaluate contract behaviour separately from production ledger governance."
+   }
+  ],
+  "refs": [
+   {
+    "ref": "[1] ASTP/ONC. Individuals' Access and Use of Patient Portals and Smartphone Health Apps, 2024. Data Brief No. 77, July 2025; HINTS 7 (2024) and HINTS 6 (2022), findings on multiple portals. https://healthit.gov/data/data-briefs/individuals-access-and-use-patient-portals-and-smartphone-health-apps-2024/ (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[2] HL7 International. FHIR R4, version 4.0.1: RDF Representation. https://hl7.org/fhir/R4/rdf.html (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[3] HL7 International. FHIR R4, version 4.0.1: Security and Consent. https://hl7.org/fhir/R4/security.html ; https://hl7.org/fhir/R4/consent.html (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[4] IPFS Documentation. Privacy and encryption. https://docs.ipfs.tech/concepts/privacy-and-encryption/ (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[5] W3C. SPARQL 1.1 Query Language. Recommendation, 21 March 2013. https://www.w3.org/TR/sparql11-query/ (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[6] W3C. Shapes Constraint Language (SHACL). Recommendation, 20 July 2017. https://www.w3.org/TR/shacl/ (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[7] W3C. PROV-O: The PROV Ontology. Recommendation, 30 April 2013. https://www.w3.org/TR/prov-o/ (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[8] Foundry Documentation. Anvil: local Ethereum node for development and testing. https://www.getfoundry.sh/anvil/index.html (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[9] SNOMED International. Vendor Introduction to SNOMED CT: Licensing. https://docs.snomed.org/snomed-ct-practical-guides/vendor-introduction-to-snomed-ct/7-licensing (accessed 17 October 2026)."
+   },
+   {
+    "ref": "[10] Apache Jena Documentation. In-memory, transactional Dataset; Apache Jena SHACL. https://jena.apache.org/documentation/rdf/datasets.html ; https://jena.apache.org/documentation/shacl/index.html (accessed 17 October 2026)."
+   }
+  ],
+  "repoCheck": {
+   "ok": true,
+   "result": "found",
+   "at": "2026-10-17T10:36:44.698Z",
+   "full_name": "baranserin/SpecialTopicsProject_CareConsent",
+   "html_url": "https://github.com/baranserin/SpecialTopicsProject_CareConsent",
+   "private": false,
+   "created_at": "2026-10-17T10:19:15Z",
+   "pushed_at": "2026-10-17T10:28:12Z",
+   "default_branch": "main",
+   "id": 1423204151
+  }
+ }
+}
