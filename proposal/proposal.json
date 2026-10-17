@@ -4,7 +4,7 @@
  "stage": "proposal",
  "stageLabel": "Proposal",
  "stageFills": "The plan: who the system is for, what it will do, how it will be built and checked, and who does what. Nothing is implemented yet: the Delivery and evidence part stays empty.",
- "saved": "2026-10-17T10:43:08.515Z",
+ "saved": "2026-10-17T11:17:43.479Z",
  "proposal": {
   "course": "SEN0401",
   "semester": "2026-2027 Fall",
@@ -27,50 +27,58 @@
    {
     "name": "Health record import and semantic model",
     "kind": "module",
-    "what": "Validate synthetic FHIR R4 resources, map them to RDF, apply project SHACL constraints and maintain an encrypted, versioned record manifest.",
+    "what": "Research FHIR R4 and the available SNOMED CT terminology subset for conditions, symptoms, medication, allergies and exercise observations. Design the project RDF/OWL model, prepare synthetic patient examples in Turtle and JSON-LD, document FHIR-to-RDF mappings and validate the model with SHACL. Use the labelled local catalogue when licensed terminology is unavailable. Deliver the ontology, mapping documentation and semantic test fixtures.",
     "epic": "E1",
-    "owner": "Elif Naz Akdora",
-    "second": "Ayset Mammadova"
+    "owner": "Ayset Mammadova",
+    "second": "Bahattin Baran Serin"
    },
    {
     "name": "Encrypted storage and record verification",
     "kind": "module",
-    "what": "Encrypt each record version with AES-256-GCM, pin ciphertext on a private IPFS network, protect keys off chain and compare retrieved bytes with the registered digest.",
+    "what": "Set up the private IPFS nodes and implement the backend upload and retrieval pipeline: validate input, encrypt each version with AES-256-GCM, pin ciphertext, retain the protected CID manifest and submit the ciphertext digest to the registry. Build APIs connecting storage, the blockchain adapter and the semantic query service. Protect per-record keys and support patient wallet signing without collecting wallet private keys. Verify retrieved bytes before decryption, enforce the gateway's consent checks and exercise the complete storage-to-retrieval flow. Deliver the storage pipeline, backend API and integration documentation.",
     "epic": "E2",
-    "owner": "Enes Malik Çolak",
-    "second": "Bahattin Baran Serin"
+    "owner": "Bahattin Baran Serin",
+    "second": "Hasan Samet Yurtbilir"
    },
    {
     "name": "Consent contracts and access gateway",
     "kind": "module",
-    "what": "Register patient-controlled grants for a recipient, purpose, selected record versions and expiry; reject access without a currently valid grant.",
+    "what": "Design and implement the Solidity record registry and consent contracts, including patient ownership checks, grantAccess, revokeAccess, expiry and release-receipt commitments. Register ciphertext digests and opaque identifiers while keeping health contents and keys off chain. Define the contract-to-gateway interface with the backend owner, write contract unit and rejection tests and document the grant, revocation and audit event flows. Deploy the contracts to the local development network and provide the deployment artefacts and test evidence.",
     "epic": "E3",
-    "owner": "Bahattin Baran Serin",
-    "second": "Enes Malik Çolak"
+    "owner": "Hasan Samet Yurtbilir",
+    "second": "Bahattin Baran Serin"
    },
    {
     "name": "Clinical query workspace",
     "kind": "module",
-    "what": "Run approved SPARQL templates on a temporary graph containing only the consenting patient's selected resources and show the supporting record versions.",
+    "what": "Write and test the five SPARQL templates, including recorded antibiotic use during the previous twelve months. Define the query parameters and permitted result projections with the backend owner, run queries on temporary consent-scoped graphs and prepare manually checked example outputs with source record versions for the report and demo. Deliver the query set, boundary fixtures, expected outputs and query documentation.",
     "epic": "E4",
     "owner": "Ayset Mammadova",
-    "second": "Elif Naz Akdora"
+    "second": "Bahattin Baran Serin"
    },
    {
     "name": "Patient dashboard and access history",
     "kind": "module",
-    "what": "Show records, grants, expiry dates and gateway release receipts; reconcile private audit details with blockchain event commitments.",
+    "what": "Design wireframes and implement the patient dashboard and clinician/researcher panels. Let patients inspect records, approve or revoke selected-version access with a duration and review gateway release receipts. Let clinicians and researchers request access and use the approved backend query/export flows. Integrate MetaMask wallet connection and signing, display confirmed grant and audit event states and prepare the thirty-day clinician-access demo screens. Deliver the functional frontend, screen flow and UI-to-API integration.",
     "epic": "E5",
-    "owner": "Hasan Samet Yurtbilir",
-    "second": "Ayset Mammadova"
+    "owner": "Elif Naz Akdora",
+    "second": "Enes Malik Çolak"
    },
    {
     "name": "Research sharing and test-credit settlement",
     "kind": "feature",
-    "what": "Let a patient separately approve a limited research export and receive one simulated credit payment per approved release, with duplicate settlement prevented.",
+    "what": "Implement the funded research request and patient test-credit settlement contract logic. Require a separate research grant, accept release attestations only from the trusted gateway, pay the agreed fee once per release identifier and handle duplicate attempts, insufficient funds and expired requests. Work with the frontend and backend owners to connect approval, export and payment states. Deliver tested settlement contracts and the event flow used by the compensation demonstration.",
     "epic": "E6",
     "owner": "Hasan Samet Yurtbilir",
-    "second": "Bahattin Baran Serin"
+    "second": "Enes Malik Çolak"
+   },
+   {
+    "name": "Project coordination, acceptance tests and demo package",
+    "kind": "feature",
+    "what": "Define personas, requirements and use cases within the agreed scope; research related work and the blockchain justification; prepare ethics and privacy notes covering GDPR/KVKK questions for review. Coordinate weekly meetings, shared architecture decisions and the integration/testing timeline. Prepare acceptance-test fixtures and a repeatable end-to-end demo script, coordinate execution with all module owners and compile their actual evidence. Maintain the project report, final presentation and rehearsal plan. The demo covers upload, digest registration, a thirty-day clinician grant, the antibiotic query, an audit receipt and automatic expiry.",
+    "epic": "E6",
+    "owner": "Enes Malik Çolak",
+    "second": "Elif Naz Akdora"
    }
   ],
   "team": [
@@ -79,13 +87,12 @@
     "no": "2300006459",
     "email": "2300006459@stu.iku.edu.tr",
     "share": "20",
-    "admin": [
-     "A_TeamLead",
-     "A_Facilitator"
-    ],
+    "admin": [],
     "dev": [
-     "R_Chain",
-     "R_Backend"
+     "R_Backend",
+     "R_Data",
+     "R_Architect",
+     "R_Ops"
     ]
    },
    {
@@ -93,14 +100,10 @@
     "no": "2300003761",
     "email": "2300003761@stu.iku.edu.tr",
     "share": "20",
-    "admin": [
-     "A_CustomerLiaison",
-     "A_DocLead"
-    ],
+    "admin": [],
     "dev": [
-     "R_Ontologist",
-     "R_Data",
-     "R_Analyst"
+     "R_Frontend",
+     "R_UX"
     ]
    },
    {
@@ -108,13 +111,11 @@
     "name": "Ayset Mammadova",
     "no": "2300003102",
     "share": "20",
-    "admin": [
-     "A_QualityLead",
-     "A_LogSteward"
-    ],
+    "admin": [],
     "dev": [
-     "R_Backend",
-     "R_Tester"
+     "R_Ontologist",
+     "R_Data",
+     "R_Backend"
     ]
    },
    {
@@ -122,13 +123,11 @@
     "name": "Enes Malik Çolak",
     "no": "2200005577",
     "share": "20",
-    "admin": [
-     "A_ReleaseManager"
-    ],
+    "admin": [],
     "dev": [
-     "R_Backend",
-     "R_Architect",
-     "R_Ops"
+     "R_Analyst",
+     "R_Docs",
+     "R_Tester"
     ]
    },
    {
@@ -138,27 +137,26 @@
     "share": "20",
     "admin": [],
     "dev": [
-     "R_Frontend",
-     "R_UX",
-     "R_Chain"
+     "R_Chain",
+     "R_Tester"
     ]
    }
   ],
   "leads": {
-   "P01": "Bahattin Baran Serin",
-   "P02": "Elif Naz Akdora",
-   "P03": "Elif Naz Akdora",
-   "P04": "Enes Malik Çolak",
-   "P05": "Hasan Samet Yurtbilir",
-   "P06": "Elif Naz Akdora",
-   "P07": "Bahattin Baran Serin",
-   "P08": "Enes Malik Çolak",
-   "P09": "Ayset Mammadova",
-   "P10": "Enes Malik Çolak",
-   "P11": "Hasan Samet Yurtbilir",
-   "P12": "Enes Malik Çolak",
-   "P13": "Ayset Mammadova",
-   "P14": "Enes Malik Çolak"
+   "P01": "Enes Malik Çolak",
+   "P02": "Enes Malik Çolak",
+   "P03": "Enes Malik Çolak",
+   "P04": "Bahattin Baran Serin",
+   "P05": "Elif Naz Akdora",
+   "P06": "Ayset Mammadova",
+   "P07": "Hasan Samet Yurtbilir",
+   "P08": "Bahattin Baran Serin",
+   "P09": "Enes Malik Çolak",
+   "P10": "Bahattin Baran Serin",
+   "P11": "Enes Malik Çolak",
+   "P12": "Bahattin Baran Serin",
+   "P13": "Bahattin Baran Serin",
+   "P14": "Bahattin Baran Serin"
   },
   "repo": "https://github.com/baranserin/SpecialTopicsProject_CareConsent",
   "worklog": [],
@@ -757,22 +755,22 @@
    {
     "date": "2026-10-23",
     "deliverable": "Freeze the synthetic-data scope, confirm stakeholder and team details, assign modules and agree the record, grant and receipt models.",
-    "owner": "Bahattin Baran Serin"
+    "owner": "Enes Malik Çolak"
    },
    {
     "date": "2026-11-06",
     "deliverable": "Complete FHIR fixtures, RDF mapping, terminology catalogue, SHACL checks and the first encrypted IPFS round trip.",
-    "owner": "Elif Naz Akdora"
+    "owner": "Ayset Mammadova"
    },
    {
     "date": "2026-11-20",
     "deliverable": "Integrate record registration, patient-signed grants, expiry, revocation and the access-control matrix on Anvil.",
-    "owner": "Bahattin Baran Serin"
+    "owner": "Hasan Samet Yurtbilir"
    },
    {
     "date": "2026-12-04",
     "deliverable": "Complete the five query templates, scoped temporary datasets, patient dashboard and release-receipt reconciliation.",
-    "owner": "Ayset Mammadova"
+    "owner": "Elif Naz Akdora"
    },
    {
     "date": "2026-12-11",
@@ -782,7 +780,7 @@
    {
     "date": "2026-12-18",
     "deliverable": "Run acceptance, isolation, failure and latency checks; review against the scope; conduct stakeholder walkthroughs if participants have been secured and record actual findings.",
-    "owner": "Ayset Mammadova"
+    "owner": "Enes Malik Çolak"
    },
    {
     "date": "2026-12-22",
