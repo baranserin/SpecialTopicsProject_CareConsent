@@ -9,7 +9,7 @@ The proposal has been submitted, and implementation is starting now.
 
 - **Course:** SEN0401 — Special Topics: Blockchain
 - **Semester:** 2026–2027 Fall (term: 2026-09-14 to 2026-12-22)
-- **Proposal files:** [`proposal/`](proposal/) (`proposal.json` is the authoritative source for scope, team, modules and the work log)
+- **Proposal files:** [`proposal/`](proposal/) (`CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.json` is the authoritative source for scope, team, modules and the work log)
 
 ## Planned Features
 
@@ -33,7 +33,7 @@ The proposal has been submitted, and implementation is starting now.
 
 ## Team and Responsibilities
 
-The distribution below follows the submitted proposal (`proposal/proposal.json`). Any change must be made in the Proposal Workbench first and then reflected here.
+The distribution below follows the submitted proposal (`proposal/CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.json`). Any change must be made in the Proposal Workbench first and then reflected here.
 
 | Member | Student no. | Development roles | Planned share |
 |---|---|---|---|
@@ -89,7 +89,7 @@ backend/     Spring Boot gateway, storage pipeline, EVM adapter
 semantic/    Ontology, mappings, SHACL shapes, SPARQL templates, fixtures
 frontend/    React/TypeScript application
 docs/        Requirements, meeting minutes, stakeholder notes, test reports
-proposal/    Proposal Workbench files (proposal.json, proposal.md, proposal_lineage.ttl)
+proposal/    Proposal Workbench files (CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.json, .md, .html, _lineage_draft.ttl)
 ```
 
 ### Working on a task (code and documentation)
@@ -104,23 +104,20 @@ proposal/    Proposal Workbench files (proposal.json, proposal.md, proposal_line
    ```bash
    git push -u origin feat/<short-name>
    ```
-4. Open a pull request into `main`. Describe what changed, link the issue (`Closes #12`), explain how to test it and request a reviewer (normally the module's second member).
+4. Open a pull request into `main`. Describe what changed, link the issue (`Closes #12`) and explain how to test it (requesting a reviewer is optional).
 5. Add your work-log entry right away (see [Work log](#work-log)). You do not need to wait for the merge, because the commit link exists as soon as the commit is pushed.
-6. The reviewer reviews the PR (see below). Fix requested changes with new commits on the same branch, then re-request review.
-7. After at least one approval, the **PR author merges** using **"Create a merge commit"** and deletes the branch.
+6. Once checks pass and you have verified the changes, the **PR author merges** directly into `main` using **"Create a merge commit"** and deletes the branch (peer review is optional).
 
-### Reviewing a pull request
+### Reviewing a pull request (optional)
 
-- Open the PR → **Files changed**. Leave line comments (use **Start a review** to batch them, or **Suggestion** to propose exact code).
-- Check out the branch locally and run the tests if needed.
-- Finish with **Review changes** → *Comment*, *Approve* or *Request changes*.
-- What to check: acceptance criterion of the linked story is met, tests exist and pass, rejection paths are tested, no sensitive data (health contents, raw CIDs, keys) reaches the chain or logs, documentation is updated, nothing outside the agreed scope is added.
-- A review is work too: log it as **Verification** with the PR link as evidence.
-- If a reviewer does not respond within 48 hours, remind them in the group. If there is still no response, the author may merge and must leave a note on the PR explaining why.
+Peer review before merging is optional and not required by the team workflow. If a teammate chooses to review a PR:
+
+- Open the PR → **Files changed**, inspect the diff or run tests locally, and leave comments or an approval under **Review changes**.
+- A completed review counts as work and can be logged as **Verification** with the PR link as evidence.
 
 ### Team rules
 
-1. **Code and documentation go through a branch and a PR** with at least one review. Never push code directly to `main`.
+1. **Code and documentation go through a branch and a PR.** Never push code directly to `main`. Peer review before merging is optional.
 2. **Exception: `proposal/` is committed directly to `main`** (no branch, no PR). See [Work log](#work-log).
 3. **Merge with "Create a merge commit" only.** No squash merges, no rebase merges and no force-pushes, because these change commit hashes and break the commit links used as work-log evidence.
 4. **Do not delete the branch of a PR that is closed without merging.** Its commits may be cited in the work log.
@@ -130,7 +127,7 @@ proposal/    Proposal Workbench files (proposal.json, proposal.md, proposal_line
 
 ## Work log
 
-The course grades the team's work log, which is stored **inside `proposal/proposal.json`**. It is recorded only through the **Proposal Workbench** (`proposal_tool_v4_11_0.html` from the course repository). Each member records their own work as it happens.
+The course grades the team's work log, which is stored **inside `proposal/CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.json`**. It is recorded only through the **Proposal Workbench** (`proposal_tool_v4_11_0.html` from the course repository, or `proposal/CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.html`). Each member records their own work as it happens.
 
 ### Why the JSON must never be edited by hand
 
@@ -148,7 +145,7 @@ The course grades the team's work log, which is stored **inside `proposal/propos
 
 The Workbench keeps data in the browser of each device and has no way to merge two copies. If two members add entries to the same old version, the chain forks and one set of entries is lost. Therefore:
 
-- **`main` is the single source of truth for `proposal/proposal.json`.** Never work from a copy kept in your browser, from WhatsApp or from an older download.
+- **`main` is the single source of truth for `proposal/CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.json`.** Never work from a copy kept in your browser, from WhatsApp or from an older download.
 - **Only one person edits the log at a time.** Announce it in the group chat ("🔒 log: <name>") and release it after pushing ("🔓 log #N pushed").
 
 ### Adding an entry, step by step
@@ -158,7 +155,7 @@ The Workbench keeps data in the browser of each device and has no way to merge t
    ```bash
    git checkout main && git pull
    ```
-3. Open the Workbench → **File › Open file** → `proposal/proposal.json`. Check that the integrity report says the chain is intact.
+3. Open the Workbench → **File › Open file** → `proposal/CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.json`. Check that the integrity report says the chain is intact.
 4. Go to **Work log › Add an entry** and fill in:
    - **Member:** yourself (the page does not verify identity, so only ever select your own name);
    - **Process:** the task type (e.g. Implementation, Integration, Verification, Design definition, Stakeholder needs and requirements);
@@ -166,7 +163,7 @@ The Workbench keeps data in the browser of each device and has no way to merge t
    - **Hours:** 0.25–12, honest;
    - **Description:** what you did, 8 words or more, specific and never repeated;
    - **Evidence:** the commit URL, PR URL or file link.
-5. Click **Record entry**, then save the files (**Save file** / ZIP) and copy `proposal.json`, `proposal.md` and `proposal_lineage.ttl` over the files in `proposal/`.
+5. Click **Record entry**, then choose **Save all formats (ZIP)** and copy all four exported files directly into `proposal/` without renaming them (`CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.json`, `CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.md`, `CareConsent_Patient-Controlled_Health_Data_and_Aud_proposal.html`, `CareConsent_Patient-Controlled_Health_Data_and_Aud_lineage_draft.ttl`).
 6. **Commit directly to `main` and push**, putting the head fingerprint shown under *Work log › Check* in the message:
    ```bash
    git add proposal/
@@ -176,7 +173,7 @@ The Workbench keeps data in the browser of each device and has no way to merge t
    Alternatively, use the Workbench's **Post to GitHub** (needs a fine-grained token with *Contents: read and write* on this repository; it writes the fingerprint into the commit message automatically).
 7. Announce in the group that the log is released.
 
-If the push is rejected because someone else pushed first, **do not try to merge `proposal.json`**. Pull the latest version, reopen it in the Workbench, record your entry again and push.
+If the push is rejected because someone else pushed first, **do not try to merge the proposal JSON file**. Pull the latest version, reopen it in the Workbench, record your entry again and push.
 
 ### What each member needs (grading)
 
