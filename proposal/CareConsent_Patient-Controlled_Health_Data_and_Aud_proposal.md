@@ -1,6 +1,6 @@
 # CareConsent: Patient-Controlled Health Data and Auditable Sharing
 
-SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF software-development profile · Self-assessed grade 90.5/100
+SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF software-development profile · Self-assessed grade 92/100
 
 ## Team, roles and work distribution
 
@@ -43,7 +43,12 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 
 ### Work log
 
-0 entries; chain intact; head fingerprint none.
+2 entries; chain intact; head fingerprint b1397a6c42948e590b51ce690318988138ffdea098bc78d2f346c7eeb5270f98.
+
+| No. | Time (UTC) | Member | Process | Hours | What | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 2026-11-24 16:44 | Hasan Samet Yurtbilir | Design definition | 1 | Defined the Solidity contract-to-gateway interface specification, opaque bytes32 identifier encodings, scope commitment rules, strict expiry semantics, and privacy invariants in docs/contract-interface.md. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/fcdceb7472097206d24723adc01b8fe54912c734 |
+| 2 | 2026-11-24 16:45 | Hasan Samet Yurtbilir | Implementation | 2.5 | Initialized the Foundry workspace, implemented RecordRegistry and ConsentManager contracts with Anvil deployment scripts and exported ABIs, and verified 48 unit and access-control matrix tests. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/3ac6d45b36e64860511a0d18abd2cc83d61e0872 |
 
 ## 1. Mission
 
@@ -326,7 +331,7 @@ Repository: https://github.com/baranserin/SpecialTopicsProject_CareConsent — C
 
 | Part | Weight | Grade | Criteria met |
 | --- | --- | --- | --- |
-| Team and work | 10% | 71/100 | 9 of 12 |
+| Team and work | 10% | 86/100 | 10 of 12 |
 | Mission | 20% | 67/100 | 5 of 7 |
 | Scope | 15% | 100/100 | 8 of 8 |
 | Goal | 15% | 100/100 | 7 of 7 |
@@ -334,17 +339,17 @@ Repository: https://github.com/baranserin/SpecialTopicsProject_CareConsent — C
 | Backlog | 20% | 100/100 | 10 of 10 |
 | Course-specific | 5% | 100/100 | 1 of 1 |
 | Plan and references | 5% | 100/100 | 3 of 3 |
-| Overall | 100% | 90.5/100 |  |
+| Overall | 100% | 92/100 |  |
 
 ### Member grades (Proposal)
 
-Project grade 92.7 (60%), team grade 71 (20%), individual contribution (20%).
+Project grade 92.7 (60%), team grade 86 (20%), individual contribution (20%).
 
 | Member | Student number | Individual | Member grade |
 | --- | --- | --- | --- |
-| Bahattin Baran Serin | 2300006459 | 22 | 74.2 |
-| Elif Naz Akdora | 2300003761 | 22 | 74.2 |
-| Ayset Mammadova | 2300003102 | 22 | 74.2 |
-| Enes Malik Çolak | 2200005577 | 22 | 74.2 |
-| Hasan Samet Yurtbilir | 2100004509 | 22 | 74.2 |
+| Bahattin Baran Serin | 2300006459 | 22 | 77.2 |
+| Elif Naz Akdora | 2300003761 | 22 | 77.2 |
+| Ayset Mammadova | 2300003102 | 22 | 77.2 |
+| Enes Malik Çolak | 2200005577 | 22 | 77.2 |
+| Hasan Samet Yurtbilir | 2100004509 | 100 | 92.8 |
 

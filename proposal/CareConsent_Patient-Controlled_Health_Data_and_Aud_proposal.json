@@ -4,7 +4,7 @@
  "stage": "proposal",
  "stageLabel": "Proposal",
  "stageFills": "The plan: who the system is for, what it will do, how it will be built and checked, and who does what. Nothing is implemented yet: the Delivery and evidence part stays empty.",
- "saved": "2026-10-17T11:17:43.479Z",
+ "saved": "2026-11-24T16:45:25.988Z",
  "proposal": {
   "course": "SEN0401",
   "semester": "2026-2027 Fall",
@@ -159,7 +159,36 @@
    "P14": "Bahattin Baran Serin"
   },
   "repo": "https://github.com/baranserin/SpecialTopicsProject_CareConsent",
-  "worklog": [],
+  "worklog": [
+   {
+    "seq": 1,
+    "ts": "2026-11-24T16:44:07.771Z",
+    "member": "Hasan Samet Yurtbilir",
+    "process": "P05",
+    "story": "S3",
+    "hours": 1,
+    "description": "Defined the Solidity contract-to-gateway interface specification, opaque bytes32 identifier encodings, scope commitment rules, strict expiry semantics, and privacy invariants in docs/contract-interface.md.",
+    "evidence": "https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/fcdceb7472097206d24723adc01b8fe54912c734",
+    "kind": "work",
+    "ref": "",
+    "prev": "GENESIS",
+    "hash": "5d3a13c52ededc663cc89c453d855f2201058968cd813067e2aa63b433cf7b73"
+   },
+   {
+    "seq": 2,
+    "ts": "2026-11-24T16:45:17.784Z",
+    "member": "Hasan Samet Yurtbilir",
+    "process": "P07",
+    "story": "S4",
+    "hours": 2.5,
+    "description": "Initialized the Foundry workspace, implemented RecordRegistry and ConsentManager contracts with Anvil deployment scripts and exported ABIs, and verified 48 unit and access-control matrix tests.",
+    "evidence": "https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/3ac6d45b36e64860511a0d18abd2cc83d61e0872",
+    "kind": "work",
+    "ref": "",
+    "prev": "5d3a13c52ededc663cc89c453d855f2201058968cd813067e2aa63b433cf7b73",
+    "hash": "b1397a6c42948e590b51ce690318988138ffdea098bc78d2f346c7eeb5270f98"
+   }
+  ],
   "customers": [],
   "endUsers": [
    {
