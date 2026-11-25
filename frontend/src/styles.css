@@ -97,6 +97,24 @@ a { color: inherit; }
   background: var(--warn-soft); color: var(--warn);
 }
 
+/* ---------- wallet ---------- */
+.topbar-right { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.wallet { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.address-badge {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 999px; background: var(--bg);
+}
+.address-badge .role { font-size: 0.8rem; font-weight: 600; color: var(--accent); }
+.dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; }
+.dot-ok { background: var(--ok); }
+.dot-warn { background: var(--warn); }
+.banner {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: space-between; align-items: center;
+  padding: 0.6rem 1.25rem; font-size: 0.9rem; border-bottom: 1px solid var(--border);
+}
+.banner-warn { background: var(--warn-soft); color: var(--warn); }
+.banner-error { background: var(--bad-soft); color: var(--bad); }
+
 /* ---------- demo state switch ---------- */
 .segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
 .segmented button {

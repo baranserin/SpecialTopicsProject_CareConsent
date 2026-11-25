@@ -6,6 +6,8 @@ import { EmptyState, Loading, ServiceUnavailable } from "./components/StatusMess
 import { RecordList } from "./components/RecordList";
 import { VersionPanel } from "./components/VersionPanel";
 import { SelectionSummary } from "./components/SelectionSummary";
+import { WalletControls, WalletNotices } from "./components/WalletControls";
+import { useWallet } from "./wallet/useWallet";
 
 type LoadState =
   | { kind: "loading" }
@@ -28,6 +30,7 @@ export default function App() {
   const [load, setLoad] = useState<LoadState>({ kind: "loading" });
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(() => new Set());
+  const wallet = useWallet();
 
   const fetchRecords = useCallback(async (s: MockScenario) => {
     setLoad({ kind: "loading" });
@@ -73,8 +76,12 @@ export default function App() {
         <div className="brand">
           Care<span className="logo">Consent</span>
         </div>
-        {USE_MOCK && <span className="badge badge-warn">Synthetic demo data</span>}
+        <div className="topbar-right">
+          {USE_MOCK && <span className="badge badge-warn">Synthetic demo data</span>}
+          <WalletControls wallet={wallet} />
+        </div>
       </header>
+      <WalletNotices wallet={wallet} />
 
       <main className="content">
         <div className="page-head">
