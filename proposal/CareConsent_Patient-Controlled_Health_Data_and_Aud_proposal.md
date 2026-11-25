@@ -43,12 +43,14 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 
 ### Work log
 
-2 entries; chain intact; head fingerprint b1397a6c42948e590b51ce690318988138ffdea098bc78d2f346c7eeb5270f98.
+4 entries; chain intact; head fingerprint 161cac1f4c11f3ef9782f06c8a859ea7922148f3d7638b87fb3d87b51b653656.
 
 | No. | Time (UTC) | Member | Process | Hours | What | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 2026-11-24 16:44 | Hasan Samet Yurtbilir | Design definition | 1 | Defined the Solidity contract-to-gateway interface specification, opaque bytes32 identifier encodings, scope commitment rules, strict expiry semantics, and privacy invariants in docs/contract-interface.md. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/fcdceb7472097206d24723adc01b8fe54912c734 |
 | 2 | 2026-11-24 16:45 | Hasan Samet Yurtbilir | Implementation | 2.5 | Initialized the Foundry workspace, implemented RecordRegistry and ConsentManager contracts with Anvil deployment scripts and exported ABIs, and verified 48 unit and access-control matrix tests. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/3ac6d45b36e64860511a0d18abd2cc83d61e0872 |
+| 3 | 2026-11-25 10:41 | Hasan Samet Yurtbilir | Design definition | 0.75 | Finalized the ResearchSettlement contract interface, test-credit escrow lifecycle, request states, error semantics, and Anvil seeding conventions in docs/contract-interface.md. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/28a2607f98cf6d42a1a618fecbf2298de748bea4 |
+| 4 | 2026-11-25 10:41 | Hasan Samet Yurtbilir | Implementation | 2 | Implemented ResearchSettlement with idempotent gateway-attested payouts, refusal and expiry refunds, updated Anvil deployment script and ABI, and verified 23 settlement tests alongside all 48 core tests. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/380e318a16fba737509c37980089246b1cf241b0 |
 
 ## 1. Mission
 
