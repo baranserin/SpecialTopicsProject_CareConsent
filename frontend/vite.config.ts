@@ -9,5 +9,9 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:8080",
     },
+    // Contract ABIs are imported from ../contracts/abi (single source of truth).
+    fs: {
+      allow: [".", "../contracts/abi"],
+    },
   },
 });

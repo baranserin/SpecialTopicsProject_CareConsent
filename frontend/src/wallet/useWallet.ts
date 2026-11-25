@@ -7,6 +7,7 @@ import {
   createMockChallengeService,
   describeWalletError,
   devRoleFor,
+  disconnectWallet,
   gatewayChallengeService,
   getInjectedProvider,
   isExpectedChain,
@@ -33,6 +34,8 @@ export interface UseWallet {
   switchNetwork: () => Promise<void>;
   signIn: () => Promise<void>;
   signOut: () => void;
+  /** Forgets the account locally and asks MetaMask to revoke this site's permission. */
+  disconnect: () => Promise<void>;
   clearError: () => void;
 }
 
@@ -132,6 +135,13 @@ export function useWallet(): UseWallet {
   );
 
   const signOut = useCallback(() => setSession(null), []);
+
+  const disconnect = useCallback(async () => {
+    setSession(null);
+    setAddress(null);
+    setError(null);
+    await disconnectWallet();
+  }, []);
   const clearError = useCallback(() => setError(null), []);
 
   const role = useMemo(() => devRoleFor(address), [address]);
@@ -149,6 +159,7 @@ export function useWallet(): UseWallet {
     switchNetwork,
     signIn,
     signOut,
+    disconnect,
     clearError,
   };
 }

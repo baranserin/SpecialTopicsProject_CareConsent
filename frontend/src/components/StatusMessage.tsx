@@ -47,6 +47,24 @@ export function ServiceUnavailable({ detail, onRetry }: ServiceUnavailableProps)
   );
 }
 
+interface AccessDeniedProps {
+  title?: string;
+  detail: string;
+}
+
+/** The viewer is not permitted to see this content. No health data is loaded. */
+export function AccessDenied({ title = "Access not permitted", detail }: AccessDeniedProps) {
+  return (
+    <div className="state state-denied" role="alert">
+      <span className="state-icon" aria-hidden="true">⛔</span>
+      <div>
+        <p className="state-title">{title}</p>
+        <p className="state-detail">{detail}</p>
+      </div>
+    </div>
+  );
+}
+
 export function Loading({ label }: { label: string }) {
   return (
     <div className="state state-loading" role="status" aria-live="polite">

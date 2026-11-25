@@ -57,6 +57,9 @@ export function WalletControls({ wallet }: { wallet: UseWallet }) {
           {busy === "signing" ? "Waiting for signature…" : "Sign in"}
         </button>
       )}
+      <button type="button" className="link-btn" onClick={() => void wallet.disconnect()} disabled={busy !== null}>
+        Disconnect
+      </button>
     </div>
   );
 }

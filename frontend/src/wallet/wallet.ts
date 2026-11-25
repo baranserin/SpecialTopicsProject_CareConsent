@@ -104,6 +104,25 @@ export async function switchToExpectedChain(): Promise<void> {
   }
 }
 
+/** ethers provider over MetaMask's connection (reads and signing use the wallet's chain). */
+export function getBrowserProvider(): BrowserProvider {
+  return new BrowserProvider(requireProvider());
+}
+
+/**
+ * Asks MetaMask to drop this site's account permission (supported by current MetaMask versions).
+ * If the wallet does not support it, the caller still forgets the account locally.
+ */
+export async function disconnectWallet(): Promise<void> {
+  const eth = getInjectedProvider();
+  if (!eth) return;
+  try {
+    await eth.request({ method: "wallet_revokePermissions", params: [{ eth_accounts: {} }] });
+  } catch {
+    // Older wallets: nothing to revoke remotely.
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Roles (development mapping only)
 // ---------------------------------------------------------------------------
@@ -261,8 +280,7 @@ export async function signInWithWallet(
   if (!isExpectedChain(chainId)) {
     throw new WalletError(`Switch MetaMask to ${NETWORK_NAME} (chain ${EXPECTED_CHAIN_ID}) before signing in.`);
   }
-  const provider = new BrowserProvider(requireProvider());
-  const signer = await provider.getSigner(address);
+  const signer = await getBrowserProvider().getSigner(address);
   const challenge = await service.requestChallenge(address, chainId);
   const signature = await signer.signMessage(challenge.message);
   return service.verify(challenge, signature);
