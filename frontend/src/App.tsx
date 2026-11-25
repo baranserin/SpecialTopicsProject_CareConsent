@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { USE_MOCK, ServiceUnavailableError, loadPatientRecords, type MockScenario } from "./api/records";
 import { MOCK_PATIENT } from "./mocks/mockData";
 import type { HealthRecord } from "./types/models";
@@ -32,13 +32,18 @@ export default function App() {
   const [selected, setSelected] = useState<Set<string>>(() => new Set());
   const wallet = useWallet();
 
+  // Only the latest request may update the page; an older, slower answer is ignored.
+  const requestSeq = useRef(0);
   const fetchRecords = useCallback(async (s: MockScenario) => {
+    const seq = ++requestSeq.current;
     setLoad({ kind: "loading" });
     try {
       const records = await loadPatientRecords(s);
+      if (seq !== requestSeq.current) return;
       setLoad({ kind: "ready", records });
       setActiveKey(records[0]?.recordKey ?? null);
     } catch (e) {
+      if (seq !== requestSeq.current) return;
       const detail =
         e instanceof ServiceUnavailableError ? e.message : "An unexpected error occurred while loading records.";
       setLoad({ kind: "unavailable", detail });
