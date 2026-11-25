@@ -6,8 +6,13 @@ Patient dashboard and access history (React + TypeScript + MetaMask).
 
 ## Current status
 
-Project scaffold only: Vite + React + TypeScript build setup, base styles and a placeholder
-landing page. Wallet connection, screens and API integration are not implemented yet.
+- Patient record list with synthetic mock data
+- Version list per record with multi-version selection (retired versions cannot be selected)
+- Live `scopeCommitment` preview for the selected versions, computed as the consent contract expects
+- Separate messages for loading, empty result and service unavailable (S12)
+
+Not implemented yet: wallet connection, grant creation/revocation, clinician and researcher
+screens, gateway API integration.
 
 ## Run locally
 
@@ -20,8 +25,15 @@ npm run build                # type check + production build into dist/
 ```
 
 Requests to `/api/*` are proxied to the Spring Boot gateway on `http://localhost:8080`.
-`VITE_USE_MOCK` in `.env.example` is reserved for the planned mock data layer, which will be used
-until the backend gateway is ready; it has no effect yet.
+
+### Mock data and demo states
+
+With `VITE_USE_MOCK=true` (the default) the app shows synthetic records for patient P01
+(Anvil account #2). Use the **Records / Empty / Service error** switch on the page, or open
+`?demo=empty` / `?demo=unavailable`, to check each result state by hand.
+
+With `VITE_USE_MOCK=false` the app reports the record service as unavailable, because the
+gateway endpoints are not defined yet; it never falls back to invented data silently.
 
 ## MetaMask + Anvil (for upcoming wallet integration)
 
@@ -29,36 +41,43 @@ until the backend gateway is ready; it has no effect yet.
 2. In MetaMask add a network: RPC `http://127.0.0.1:8545`, chain id `31337`, symbol `ETH`.
 3. Import one of the test private keys printed by Anvil (test accounts only).
 
-A **Connect wallet** button will be added with the wallet integration.
-
 ## Structure
 
-Current:
-
 ```
-index.html     Vite entry page
+index.html                 Vite entry page
 src/
-  main.tsx     application entry (placeholder page)
-  styles.css   base styles and colour tokens
+  main.tsx                 React entry
+  App.tsx                  patient records page: loading, record list, versions, selection
+  styles.css               styles and colour tokens
+  api/records.ts           record data access (mock source, demo scenarios)
+  mocks/mockData.ts        synthetic patient records and versions, Anvil test accounts
+  types/models.ts          contract-aligned types, grant status rule, scopeCommitment
+  components/
+    RecordList.tsx         record list
+    VersionPanel.tsx       versions of the open record with checkboxes
+    SelectionSummary.tsx   selected versions and scopeCommitment preview
+    StatusMessage.tsx      EmptyState, ServiceUnavailable, Loading
+    format.ts              date and hex formatting helpers
 ```
 
-Planned:
+## Alignment with the contracts
 
-```
-src/
-  api/         data access (mock first, gateway API later)
-  components/  layout, wallet button, status helpers
-  pages/       Overview, Records, Grants, AccessHistory
-  types/       models: RecordVersion, ConsentGrant, ReleaseReceipt
-  wallet/      MetaMask connection (ethers v6)
-```
+`src/types/models.ts` follows [`docs/contract-interface.md`](../docs/contract-interface.md) and
+`contracts/src/interfaces/*.sol`:
 
-The models will be aligned with the backend API and with the contract interface in
-[`docs/contract-interface.md`](../docs/contract-interface.md).
+- `Purpose`, `GrantStatus` and `RequestStatus` use the same `uint8` values as the Solidity enums.
+- `grantStatusAt` applies the contract rule: revoked first, expired when `now >= expiresAt`.
+- `computeScopeCommitment(patient, versionIds)` = `keccak256(abi.encode(address, bytes32[]))`
+  with version IDs sorted strictly ascending; empty lists, zero IDs and duplicates are rejected.
+- Mock `versionId`s follow `sha256("CareConsent:Version:v1:" || uuid)`. Mock `ciphertextDigest`s
+  are stand-in hashes, because no encrypted envelopes exist until the storage pipeline is ready.
+
+Off-chain display fields (summary, clinical date, receipt details) are a draft and must be aligned
+with the backend API.
 
 ## Planned next steps
 
 - MetaMask connection and wallet-challenge sign-in
 - Create and revoke grants with a MetaMask signature
 - Verify receipts against their on-chain commitments
-- Research-approval screen
+- Clinician and researcher screens
