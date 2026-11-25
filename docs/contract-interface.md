@@ -1,6 +1,6 @@
 # CareConsent Contract-to-Gateway Interface Specification
 
-**Module:** Consent contracts and access gateway (Epic E3) & Encrypted storage registry interface (Epic E2)  
+**Module:** Consent contracts and access gateway (Epic E3), Encrypted storage registry interface (Epic E2), and Research sharing & test-credit settlement (Epic E6)  
 **Smart-contract owner:** Hasan Samet Yurtbilir  
 **Second member / reviewer:** Bahattin Baran Serin  
 **Target Solidity compiler:** `0.8.24` (EVM `paris`)  
@@ -12,9 +12,9 @@
 
 This document defines the exact on-chain interface, identifier encodings, events, custom errors, and trust boundaries shared between:
 
-- **`contracts/` (Smart-contract owner):** Solidity contracts (`RecordRegistry`, `ConsentManager`), custom errors, events, Foundry unit/rejection tests, Anvil deployment scripts, and exported ABI JSON artifacts (`contracts/abi/`).
+- **`contracts/` (Smart-contract owner):** Solidity contracts (`RecordRegistry`, `ConsentManager`, `ResearchSettlement`), custom errors, events, Foundry unit/rejection tests, Anvil deployment scripts, and exported ABI JSON artifacts (`contracts/abi/`).
 - **`backend/` (Backend owner):** Java Spring Boot EVM adapter, gateway consent enforcement, AES-256-GCM encryption/decryption pipeline, private IPFS adapter, and temporary Apache Jena SPARQL execution.
-- **`frontend/` (Frontend owner):** React/TypeScript UI and MetaMask transaction signing for patients (`registerVersion`, `retireVersion`, `grantAccess`, `revokeGrant`) and off-chain wallet-challenge authentication.
+- **`frontend/` (Frontend owner):** React/TypeScript UI and MetaMask transaction signing for patients (`registerVersion`, `retireVersion`, `grantAccess`, `revokeGrant`, `refuseResearchRequest`), researchers (`fundResearchRequest`, `refundExpiredRequest`), and off-chain wallet-challenge authentication.
 
 The patient wallet signs record registrations, retirements, grants, and revocations directly against the contracts. The Spring Boot gateway cannot forge patient consent; it reads confirmed contract state, enforces access control before any decryption, rechecks consent immediately prior to release, and anchors encrypted release-receipt commitments via an allowlisted gateway signer address.
 
@@ -48,6 +48,7 @@ All identifiers and commitments are fixed-width `bytes32` values (`0x` + 64 hex 
 | `versionId` | `bytes32` | Opaque identifier generated off-chain, e.g. `sha256("CareConsent:Version:v1:" || uuid)` |
 | `ciphertextDigest` | `bytes32` | `sha256(exactEncryptedEnvelopeBytes)` covering the authenticated AES-256-GCM envelope stored on IPFS |
 | `grantId` | `bytes32` | Unique per grant to prevent replay, e.g. `keccak256(abi.encode(chainId, consentManagerAddress, patientAddress, requestId))` |
+| `requestId` | `bytes32` | Unique opaque identifier for a funded research export request, e.g. `sha256("CareConsent:ResearchRequest:v1:" || requestUuid)` |
 | `scopeCommitment` | `bytes32` | `keccak256(abi.encode(patientAddress, sortedVersionIds))` where `sortedVersionIds` is a non-empty, duplicate-free `bytes32[]` sorted strictly ascending by unsigned 256-bit integer value |
 | `releaseId` | `bytes32` | Unique per gateway release attempt, e.g. `sha256("CareConsent:Release:v1:" || releaseUuid)` |
 | `receiptCommitment` | `bytes32` | `sha256(exactEncryptedReleaseReceiptBytes)` matching the private off-chain `ReleaseReceipt` |
@@ -73,6 +74,16 @@ All identifiers and commitments are fixed-width `bytes32` values (`0x` + 64 hex 
 | `3` | `Revoked` | Exists and `revoked == true` (takes precedence in status display) |
 
 > Note: `Pending` and `Refused` are off-chain `AccessRequest` states managed by the gateway before a patient signs a transaction on chain.
+
+#### `RequestStatus` (`uint8`, `ResearchSettlement`)
+| Value | Name | Meaning |
+|---|---|---|
+| `0` | `NotFound` | No funded research request exists for `requestId` |
+| `1` | `Funded` | Researcher escrowed `fee` and `block.timestamp < expiresAt` |
+| `2` | `Refused` | Named patient refused the request; `fee` was refunded to researcher |
+| `3` | `Settled` | Authorized gateway attested release and credited `fee` to patient once |
+| `4` | `Refunded` | Unused expired request refunded back to researcher |
+| `5` | `Expired` | Request was `Funded` and `block.timestamp >= expiresAt` (eligible for refund) |
 
 ### 3.3 Expiry Boundary Semantics
 
@@ -199,20 +210,83 @@ struct ReleaseCommitment {
 
 ---
 
-## 5. Planned Epic E6 Interface Preview (`ResearchSettlement`)
+### 4.3 `ResearchSettlement` (`IResearchSettlement`)
 
-> **Status:** *Planned — Epic E6 (to be implemented after E2 storage and E3 consent integration).*
+Escrows valueless development test credits for research-sharing requests, supports patient refusal and expired-request refunds, and enforces one-time idempotent settlement per `releaseId` upon gateway attestation on `ConsentManager`.
 
-The upcoming `ResearchSettlement` contract will integrate cleanly with `ConsentManager` without changing the `ConsentManager` ABI:
+#### Structs
+```solidity
+struct ResearchRequest {
+    address researcher;
+    address patient;
+    bytes32 scopeCommitment;
+    uint256 fee;
+    uint64 fundedAt;
+    uint64 expiresAt;
+    RequestStatus status;
+    bytes32 settledReleaseId;
+    uint64 settledAt;
+}
 
-1. A researcher funds a test-credit request (`fundResearchRequest(bytes32 requestId, address patient, uint256 fee, uint64 expiresAt)` or equivalent test-credit vault).
-2. The patient creates a `ConsentGrant` with `Purpose.Research` (`purpose = 2`) in `ConsentManager`.
-3. Once the gateway completes export preparation, rechecks consent, and anchors `recordRelease(releaseId, grantId, researcher, Purpose.Research, scopeCommitment, receiptCommitment)` on `ConsentManager`, the gateway calls `settleResearch(bytes32 releaseId)` (or `settleResearch(bytes32 requestId, bytes32 releaseId)`).
-4. `ResearchSettlement` will verify via `IConsentManager`:
-   - `releaseExists(releaseId)` is `true` and `getRelease(releaseId)` shows `purpose == Purpose.Research` and an authorized `gateway`.
-   - `getGrant(release.grantId).owner` matches the funded patient payout address.
-   - `releaseId` has never been settled before (strict idempotency; duplicate calls revert).
-5. Unused expired requests will support refunding to the researcher. All credits are valueless local Anvil development credits.
+struct SettlementRecord {
+    bytes32 requestId;
+    bytes32 grantId;
+    address patient;
+    address researcher;
+    uint256 fee;
+    address gateway;
+    uint64 settledAt;
+    bool settled;
+}
+```
+
+#### Functions
+| Function | Caller | Behavior & Validation |
+|---|---|---|
+| `mintTestCredits(address account, uint256 amount)` | `admin` | Reverts `UnauthorizedAdmin`, `InvalidAccount` (`account == 0`), or `InvalidAmount` (`amount == 0`). Credits `creditBalances[account]` with valueless development test credits and emits `TestCreditsMinted`. |
+| `fundResearchRequest(bytes32 requestId, address patient, bytes32 scopeCommitment, uint256 fee, uint64 expiresAt)` | Researcher (`msg.sender`) | Reverts on zero/duplicate `requestId`, `patient == 0` or `patient == msg.sender`, zero `scopeCommitment`, `fee == 0`, `expiresAt <= block.timestamp`, or insufficient `creditBalances[msg.sender]`. Escrows `fee` and creates a `Funded` request. |
+| `refuseResearchRequest(bytes32 requestId)` | Named patient (`msg.sender`) | Reverts if missing, not `Funded`, `msg.sender != patient`, or expired. Marks `Refused` and immediately refunds `fee` to `creditBalances[researcher]`. |
+| `refundExpiredRequest(bytes32 requestId)` | Any | Reverts if missing, not `Funded`, or `block.timestamp < expiresAt`. Marks `Refunded` and returns escrowed `fee` to `creditBalances[researcher]`. |
+| `settleResearch(bytes32 requestId, bytes32 releaseId)` | Allowlisted gateway | Verifies `consentManager.authorizedGateways(msg.sender)`, non-zero IDs, `releaseId` not already settled, request `Funded` and unexpired, `consentManager.releaseExists(releaseId)`, `Purpose.Research` on both release and grant, grant not revoked and unexpired, and exact match on `patient`, `researcher`, and `scopeCommitment`. Marks request `Settled`, records `SettlementRecord`, and credits `fee` to `creditBalances[patient]` once. |
+| `getRequest(bytes32 requestId) view returns (ResearchRequest memory)` | Any | Returns stored request with dynamically evaluated `Expired` status; reverts `RequestNotFound` if absent. |
+| `getRequestStatus(bytes32 requestId) view returns (RequestStatus)` | Any | Returns `NotFound`, `Funded`, `Refused`, `Settled`, `Refunded`, or `Expired`. |
+| `isReleaseSettled(bytes32 releaseId) view returns (bool)` | Any | Returns `true` iff `releaseId` has already been settled. |
+| `getSettlement(bytes32 releaseId) view returns (SettlementRecord memory)` | Any | Returns `SettlementRecord`; reverts `SettlementNotFound` if unsettled. |
+
+#### Events
+- `TestCreditsMinted(address indexed account, uint256 amount, uint256 newBalance)`
+- `ResearchRequestFunded(bytes32 indexed requestId, address indexed researcher, address indexed patient, bytes32 scopeCommitment, uint256 fee, uint64 expiresAt, uint64 fundedAt)`
+- `ResearchRequestRefused(bytes32 indexed requestId, address indexed patient, address indexed researcher, uint256 refundedFee, uint64 refusedAt)`
+- `ResearchRequestRefunded(bytes32 indexed requestId, address indexed researcher, uint256 refundedFee, uint64 refundedAt)`
+- `ResearchSettled(bytes32 indexed releaseId, bytes32 indexed requestId, bytes32 indexed grantId, address patient, address researcher, uint256 fee, address gateway, uint64 settledAt)`
+
+#### Custom Errors
+- `InvalidConsentManager()`
+- `UnauthorizedAdmin(address caller)`
+- `UnauthorizedGateway(address caller)`
+- `InvalidAccount()`, `InvalidAmount()`
+- `InvalidRequestId()`, `RequestAlreadyExists(bytes32 requestId)`, `InvalidPatient()`, `InvalidScopeCommitment()`, `InvalidFee()`, `ExpiryNotInFuture(uint64 expiresAt, uint64 currentTime)`
+- `InsufficientTestCredits(address researcher, uint256 required, uint256 available)`
+- `RequestNotFound(bytes32 requestId)`, `NotRequestPatient(bytes32 requestId, address caller)`
+- `RequestAlreadyRefused(bytes32 requestId)`, `RequestAlreadySettled(bytes32 requestId)`, `RequestAlreadyRefunded(bytes32 requestId)`
+- `RequestIsExpired(bytes32 requestId)`, `RequestNotExpired(bytes32 requestId, uint64 expiresAt, uint64 currentTime)`
+- `InvalidReleaseId()`, `ReleaseAlreadySettled(bytes32 releaseId)`, `ReleaseNotAttested(bytes32 releaseId)`
+- `NotResearchPurpose(bytes32 grantId, IConsentManager.Purpose actual)`, `GrantIsRevoked(bytes32 grantId)`, `GrantIsExpired(bytes32 grantId)`
+- `PatientMismatch(bytes32 requestId, address expected, address actual)`, `ResearcherMismatch(bytes32 requestId, address expected, address actual)`, `ScopeMismatch(bytes32 requestId)`
+- `SettlementNotFound(bytes32 releaseId)`
+
+---
+
+## 5. Research Settlement and Refund Flow (Epic E6)
+
+1. The deployer/admin mints valueless local test credits to a researcher (`mintTestCredits`).
+2. The researcher calls `ResearchSettlement.fundResearchRequest(requestId, patient, scopeCommitment, fee, expiresAt)`, moving `fee` into escrow.
+3. The patient reviews the terms in the dashboard:
+   - If the patient rejects, `refuseResearchRequest(requestId)` returns `fee` to the researcher immediately.
+   - If the patient approves, the patient signs `ConsentManager.grantAccess(grantId, researcher, Purpose.Research, scopeCommitment, grantExpiresAt)`. A `Purpose.Treatment` grant cannot satisfy settlement.
+4. Once the gateway prepares the narrow research export, rechecks consent, and anchors `ConsentManager.recordRelease(releaseId, grantId, researcher, Purpose.Research, scopeCommitment, receiptCommitment)`, the allowlisted gateway calls `ResearchSettlement.settleResearch(requestId, releaseId)`.
+5. `ResearchSettlement` credits `fee` to `creditBalances[patient]` exactly once per `releaseId` and `requestId`. Duplicate retries revert with `ReleaseAlreadySettled` or `RequestAlreadySettled`.
+6. If a funded request expires unused (`block.timestamp >= expiresAt`), `refundExpiredRequest(requestId)` restores `fee` to `creditBalances[researcher]`.
 
 ---
 
@@ -222,8 +296,10 @@ The upcoming `ResearchSettlement` contract will integrate cleanly with `ConsentM
 |---|---|
 | Chain ID | `31337` |
 | RPC URL | `http://127.0.0.1:8545` |
-| Account `#0` (`0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`) | Contract deployer & `ConsentManager.admin` |
+| Account `#0` (`0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266`) | Contract deployer, `ConsentManager.admin`, & `ResearchSettlement.admin` |
 | Account `#1` (`0x70997970C51812dc3A010C7d01b50e0d17dc79C8`) | Default allowlisted gateway signer (`GATEWAY_ADDRESS`) |
-| Accounts `#2+` | Synthetic Patient, Clinician, and Researcher test wallets |
-| ABI artifacts | `contracts/abi/RecordRegistry.json`, `contracts/abi/ConsentManager.json` |
+| Account `#2` | Default synthetic Patient test wallet |
+| Account `#3` | Default synthetic Clinician test wallet |
+| Account `#4` (`0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65`) | Default synthetic Researcher test wallet (seeded with `1000` test credits by deploy script) |
+| ABI artifacts | `contracts/abi/RecordRegistry.json`, `contracts/abi/ConsentManager.json`, `contracts/abi/ResearchSettlement.json` |
 | Deployment script | `contracts/script/DeployCareConsent.s.sol` |
