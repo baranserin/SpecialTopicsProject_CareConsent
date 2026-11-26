@@ -1,0 +1,75 @@
+@prefix sh:  <http://www.w3.org/ns/shacl#> .
+@prefix cc:  <https://careconsent.example/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ccs: <https://careconsent.example/shapes#> .
+
+# Second validation layer, applied to the RDF produced by the mapper.
+# FHIR-level rules (unsupported types, modifier extensions, duplicate ids, patient reference present in bundle)
+# are enforced earlier by the import validator, see mappings/fhir-to-rdf.md.
+
+ccs:PatientProfileShape a sh:NodeShape ;
+    sh:targetClass cc:PatientProfile ;
+    sh:property [ sh:path cc:birthDate ; sh:datatype xsd:date ; sh:maxCount 1 ] .
+
+ccs:VersionShape a sh:NodeShape ;
+    sh:targetClass cc:HealthRecordVersion ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "^https://careconsent\\.example/id/version/[0-9a-f]{64}$" ;
+    sh:message "Version IRI must end in the opaque 64-hex versionId." ;
+    sh:property [ sh:path cc:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:class cc:PatientProfile ] ;
+    sh:property [ sh:path cc:sourceResource ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path cc:recordedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path cc:concept ; sh:minCount 1 ; sh:maxCount 1 ; sh:class cc:TerminologyConcept ] ;
+    sh:property [ sh:path cc:status ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path cc:replacesVersion ; sh:maxCount 1 ; sh:class cc:HealthRecordVersion ] .
+
+ccs:ConditionShape a sh:NodeShape ;
+    sh:targetClass cc:ConditionRecord ;
+    sh:property [ sh:path cc:status ; sh:in ( "active" "recurrence" "relapse" "inactive" "remission" "resolved" ) ] ;
+    sh:property [ sh:path cc:verificationStatus ; sh:maxCount 1 ;
+                  sh:in ( "unconfirmed" "provisional" "differential" "confirmed" "refuted" "entered-in-error" ) ] ;
+    sh:property [ sh:path cc:onsetAt ; sh:maxCount 1 ] .
+
+ccs:AllergyShape a sh:NodeShape ;
+    sh:targetClass cc:AllergyRecord ;
+    sh:property [ sh:path cc:status ; sh:in ( "active" "inactive" "resolved" ) ] ;
+    sh:property [ sh:path cc:verificationStatus ; sh:maxCount 1 ;
+                  sh:in ( "unconfirmed" "confirmed" "refuted" "entered-in-error" ) ] .
+
+ccs:MedicationStatementShape a sh:NodeShape ;
+    sh:targetClass cc:MedicationStatementRecord ;
+    sh:property [ sh:path cc:status ;
+                  sh:in ( "active" "completed" "entered-in-error" "intended" "stopped" "on-hold" "unknown" "not-taken" ) ] ;
+    sh:property [ sh:path cc:periodStart ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path cc:periodEnd ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Medication period ends before it starts." ;
+        sh:select """
+            SELECT $this ?value WHERE {
+              $this <https://careconsent.example/ns#periodStart> ?s ;
+                    <https://careconsent.example/ns#periodEnd> ?value .
+              FILTER (?value < ?s)
+            }""" ] .
+
+ccs:ObservationShape a sh:NodeShape ;
+    sh:targetClass cc:ObservationRecord ;
+    sh:property [ sh:path cc:observationKind ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "symptom" "exercise" "other" ) ] ;
+    sh:property [ sh:path cc:effectiveAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path cc:valueQuantity ; sh:maxCount 1 ; sh:datatype xsd:decimal ] ;
+    sh:property [ sh:path cc:unit ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "An observation value needs a unit." ;
+        sh:select """
+            SELECT $this WHERE {
+              $this <https://careconsent.example/ns#valueQuantity> ?v .
+              FILTER NOT EXISTS { $this <https://careconsent.example/ns#unit> ?u }
+            }""" ] .
+
+ccs:ConceptShape a sh:NodeShape ;
+    sh:targetClass cc:TerminologyConcept ;
+    sh:property [ sh:path cc:code ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:label ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cc:conceptOrigin ; sh:minCount 1 ; sh:in ( "standard" "local-demo" ) ] ;
+    sh:property [ sh:path cc:catalogueVersion ; sh:minCount 1 ] .
