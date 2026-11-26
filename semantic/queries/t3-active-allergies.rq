@@ -1,0 +1,16 @@
+PREFIX cc:   <https://careconsent.example/ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX csd:  <https://careconsent.example/cs/demo/>
+# T3  Active recorded allergies. Params: ?patient.
+SELECT ?version ?code ?label ?status ?recordedAt
+WHERE {
+  ?version a cc:AllergyRecord ;
+           cc:subject ?patient ;
+           cc:status ?status ;
+           cc:concept ?concept ;
+           cc:recordedAt ?recordedAt .
+  ?concept cc:code ?code ; cc:label ?label .
+  FILTER (?status = "active")
+  FILTER NOT EXISTS { ?version cc:verificationStatus ?v . FILTER (?v IN ("entered-in-error", "refuted")) }
+}
+ORDER BY ?label ?version

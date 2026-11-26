@@ -1,0 +1,22 @@
+PREFIX cc:   <https://careconsent.example/ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX csd:  <https://careconsent.example/cs/demo/>
+# T5  Dated exercise observations inside the interval.
+# Params: ?patient, ?windowStart, ?windowEnd (xsd:dateTime, UTC); interval is half-open [windowStart, windowEnd).
+# Value and unit are optional and returned exactly as recorded (no unit conversion). entered-in-error and cancelled are excluded.
+SELECT ?version ?code ?label ?effectiveAt ?valueQuantity ?unit ?recordedAt
+WHERE {
+  ?version a cc:ObservationRecord ;
+           cc:subject ?patient ;
+           cc:observationKind "exercise" ;
+           cc:status ?status ;
+           cc:concept ?concept ;
+           cc:effectiveAt ?effectiveAt ;
+           cc:recordedAt ?recordedAt .
+  ?concept cc:code ?code ; cc:label ?label .
+  OPTIONAL { ?version cc:valueQuantity ?valueQuantity }
+  OPTIONAL { ?version cc:unit ?unit }
+  FILTER (?status NOT IN ("entered-in-error", "cancelled"))
+  FILTER (?effectiveAt >= ?windowStart && ?effectiveAt < ?windowEnd)
+}
+ORDER BY DESC(?effectiveAt) ?version

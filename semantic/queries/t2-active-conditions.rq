@@ -1,0 +1,18 @@
+PREFIX cc:   <https://careconsent.example/ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX csd:  <https://careconsent.example/cs/demo/>
+# T2  Active recorded conditions. Params: ?patient.
+# Active = status active, recurrence or relapse; entered-in-error and refuted records are excluded.
+SELECT ?version ?code ?label ?status ?onsetAt ?recordedAt
+WHERE {
+  ?version a cc:ConditionRecord ;
+           cc:subject ?patient ;
+           cc:status ?status ;
+           cc:concept ?concept ;
+           cc:recordedAt ?recordedAt .
+  ?concept cc:code ?code ; cc:label ?label .
+  OPTIONAL { ?version cc:onsetAt ?onsetAt }
+  FILTER (?status IN ("active", "recurrence", "relapse"))
+  FILTER NOT EXISTS { ?version cc:verificationStatus ?v . FILTER (?v IN ("entered-in-error", "refuted")) }
+}
+ORDER BY ?onsetAt ?version

@@ -1,0 +1,23 @@
+PREFIX cc:   <https://careconsent.example/ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX csd:  <https://careconsent.example/cs/demo/>
+# T1  Recorded antibiotic use overlapping an evaluation interval (typically the previous 12 months).
+# Params (bound by the backend, never concatenated): ?patient (IRI), ?windowStart, ?windowEnd (xsd:dateTime, UTC).
+# Interval is half-open [windowStart, windowEnd); a use period is closed [periodStart, periodEnd]; no periodEnd = ongoing.
+# Only MedicationStatement versions count; statuses entered-in-error, intended, not-taken and unknown are excluded
+# (a prescription alone is never presented as confirmed use).
+SELECT ?version ?code ?label ?status ?periodStart ?periodEnd ?recordedAt
+WHERE {
+  ?version a cc:MedicationStatementRecord ;
+           cc:subject ?patient ;
+           cc:status ?status ;
+           cc:concept ?concept ;
+           cc:periodStart ?periodStart ;
+           cc:recordedAt ?recordedAt .
+  OPTIONAL { ?version cc:periodEnd ?periodEnd }
+  ?concept cc:code ?code ; cc:label ?label ;
+           skos:broader* csd:CLASS-ANTIBIOTIC .
+  FILTER (?status IN ("active", "completed", "stopped", "on-hold"))
+  FILTER (?periodStart < ?windowEnd && (!BOUND(?periodEnd) || ?periodEnd >= ?windowStart))
+}
+ORDER BY DESC(?periodStart) ?version
