@@ -1,0 +1,182 @@
+# Local demonstration terminology catalogue v0.1 - 'local-demo' concepts are NOT SNOMED CT; 'standard' concepts are WHO ATC codes with demo labels
+@prefix cc: <https://careconsent.example/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://careconsent.example/cs/atc/A10BA02> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "A10BA02" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Metformin" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/C09AA03> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "C09AA03" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Lisinopril" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01AA02> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01AA02" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Doxycycline" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01CA04> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01CA04" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Amoxicillin" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01CR02> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01CR02" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Amoxicillin and beta-lactamase inhibitor" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01DB01> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01DB01" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Cefalexin" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01EA01> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01EA01" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Trimethoprim" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01FA09> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01FA09" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Clarithromycin" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01FA10> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01FA10" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Azithromycin" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01MA02> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01MA02" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Ciprofloxacin" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/atc/J01XE01> a cc:TerminologyConcept ;
+    skos:broader <https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "J01XE01" ;
+    cc:conceptOrigin "standard" ;
+    cc:label "Nitrofurantoin" ;
+    cc:system <http://www.whocc.no/atc> .
+
+<https://careconsent.example/cs/demo/CLASS-ANTIBIOTIC> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "CLASS-ANTIBIOTIC" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Antibacterial for systemic use (demo class, ATC J01)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-ALG-001> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-ALG-001" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Penicillin allergy (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-ALG-002> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-ALG-002" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Peanut allergy (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-ALG-003> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-ALG-003" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Latex allergy (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-COND-001> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-COND-001" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Type 2 diabetes mellitus (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-COND-002> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-COND-002" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Essential hypertension (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-COND-003> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-COND-003" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Acute cystitis (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-COND-004> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-COND-004" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Asthma (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-EXR-001> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-EXR-001" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Walking duration (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-EXR-002> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-EXR-002" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Walking distance (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-EXR-003> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-EXR-003" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Cycling distance (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-SYM-001> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-SYM-001" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Fatigue (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
+<https://careconsent.example/cs/demo/LC-SYM-002> a cc:TerminologyConcept ;
+    cc:catalogueVersion "0.1" ;
+    cc:code "LC-SYM-002" ;
+    cc:conceptOrigin "local-demo" ;
+    cc:label "Dizziness (demo)" ;
+    cc:system <https://careconsent.example/cs/demo-catalogue/v0.1> .
+
