@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "cc": "https://careconsent.example/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@graph": [
+    {
+      "@id": "https://careconsent.example/id/patient/P03",
+      "@type": [
+        "cc:PatientProfile"
+      ],
+      "cc:birthDate": {
+        "@value": "1990-07-07",
+        "@type": "xsd:date"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/c627f6478df92151969ec08e5d6ab54a854392f6a5220d191513450d086fd78a",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ConditionRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-COND-004"
+      },
+      "cc:onsetAt": {
+        "@value": "2005-01-01",
+        "@type": "xsd:date"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Condition",
+      "cc:sourceResource": "Condition/c01",
+      "cc:status": "inactive",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P03"
+      },
+      "cc:verificationStatus": "confirmed"
+    }
+  ]
+}

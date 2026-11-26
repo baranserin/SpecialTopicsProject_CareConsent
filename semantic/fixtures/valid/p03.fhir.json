@@ -1,0 +1,51 @@
+{
+  "resourceType": "Bundle",
+  "id": "synthetic-P03",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P03",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P03",
+        "birthDate": "1990-07-07"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c01",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c01",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "inactive"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-004"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P03"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        },
+        "onsetDateTime": "2005-01-01"
+      }
+    }
+  ]
+}

@@ -1,0 +1,680 @@
+{
+  "@context": {
+    "cc": "https://careconsent.example/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@graph": [
+    {
+      "@id": "https://careconsent.example/id/patient/P01",
+      "@type": [
+        "cc:PatientProfile"
+      ],
+      "cc:birthDate": {
+        "@value": "1968-04-12",
+        "@type": "xsd:date"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/081ae09ddd126717777a84eb1d952b6edd783e5452e95b2bd32a60c6ff47ad7a",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01MA02"
+      },
+      "cc:periodEnd": {
+        "@value": "2025-12-01T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:periodStart": {
+        "@value": "2025-11-24T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms02",
+      "cc:status": "completed",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/0d3c9981487d1ae81e20e00541c7315a914497b464c835ec671f63d116481f05",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ObservationRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-SYM-002"
+      },
+      "cc:effectiveAt": {
+        "@value": "2026-11-15T09:30:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:observationKind": "symptom",
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Observation",
+      "cc:sourceResource": "Observation/sym2",
+      "cc:status": "final",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/12dec02787f2228c9245af336a4a58ebe34f730902a2436af13267b1684c50eb",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ConditionRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-COND-004"
+      },
+      "cc:onsetAt": {
+        "@value": "2001-09-01",
+        "@type": "xsd:date"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Condition",
+      "cc:sourceResource": "Condition/c04",
+      "cc:status": "inactive",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "confirmed"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/20690c0243d54b5acb46d7dba21c812ce6193f1789025a61d0577f517f1af4b1",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ObservationRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-EXR-003"
+      },
+      "cc:effectiveAt": {
+        "@value": "2026-09-20T17:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:observationKind": "exercise",
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Observation",
+      "cc:sourceResource": "Observation/ex0",
+      "cc:status": "final",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:unit": "km",
+      "cc:valueQuantity": {
+        "@value": 25.0,
+        "@type": "xsd:decimal"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/48893948b5fc448a7bf35ce987bf3ddb99ebd4a1a7cfee2bcc5ac281808d8084",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ObservationRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-SYM-001"
+      },
+      "cc:effectiveAt": {
+        "@value": "2026-10-20T08:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:observationKind": "symptom",
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Observation",
+      "cc:sourceResource": "Observation/sym1",
+      "cc:status": "final",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:unit": "score",
+      "cc:valueQuantity": {
+        "@value": 3.0,
+        "@type": "xsd:decimal"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/4b28cd5afc0b9d2f8f35d6ae5b79018a2255ff781ce46b8caf546f90220c07a5",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ConditionRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-COND-003"
+      },
+      "cc:onsetAt": {
+        "@value": "2026-03-01",
+        "@type": "xsd:date"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Condition",
+      "cc:sourceResource": "Condition/c03",
+      "cc:status": "resolved",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "confirmed"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/4c324a13f8ac4978515a42ae7abcff492acc69e578d26cce1b8124d6ba3da4bd",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:AllergyRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-ALG-001"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "AllergyIntolerance",
+      "cc:sourceResource": "AllergyIntolerance/a01",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "confirmed"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/4df60a40ccce78f06ef9271a5845ced190e6bedaf0796e07ffbf705817ca6b15",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01FA10"
+      },
+      "cc:periodEnd": {
+        "@value": "2026-10-10T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:periodStart": {
+        "@value": "2026-10-05T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms05",
+      "cc:status": "completed",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/57f694d0d446a9adc49289a8d64f52c0614cffc6e7782315c59283fecbb7bf3d",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:AllergyRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-ALG-002"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "AllergyIntolerance",
+      "cc:sourceResource": "AllergyIntolerance/a02",
+      "cc:status": "inactive",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "confirmed"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/5bb7f8f20370fd7f67828c829bce8b70091613c8daff7b9e5938d9790b0146a0",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ConditionRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-COND-001"
+      },
+      "cc:onsetAt": {
+        "@value": "2015-06-01",
+        "@type": "xsd:date"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Condition",
+      "cc:sourceResource": "Condition/c05",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "entered-in-error"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/5e7f211bb8f6352ca617188c8164028b6c557479ec48f708737a63dcb4622896",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ObservationRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-EXR-002"
+      },
+      "cc:effectiveAt": {
+        "@value": "2026-11-16T07:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:observationKind": "exercise",
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Observation",
+      "cc:sourceResource": "Observation/ex3",
+      "cc:status": "final",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:unit": "m",
+      "cc:valueQuantity": {
+        "@value": 2500.0,
+        "@type": "xsd:decimal"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/7e81b0e4961cc2c02eb6c06ea3babd75fb2b6fc4159303084bf458571942aae1",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01EA01"
+      },
+      "cc:periodStart": {
+        "@value": "2026-11-25T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms10",
+      "cc:status": "intended",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/898377b301b749eebcf96ae7b008a76ac0631adcca64fd89358e24cd3b36ba72",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ConditionRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-COND-001"
+      },
+      "cc:onsetAt": {
+        "@value": "2015-06-01",
+        "@type": "xsd:date"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Condition",
+      "cc:sourceResource": "Condition/c01",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "confirmed"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/8c8989d92bb450c72e936bbff339414f4610a6107c6fe68d74cf3e817008d875",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ConditionRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-COND-002"
+      },
+      "cc:onsetAt": {
+        "@value": "2017-02-20",
+        "@type": "xsd:date"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Condition",
+      "cc:sourceResource": "Condition/c02",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "confirmed"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/911fb1a205587fa2c036341256aad6a41135e842d9f7558c327b885df669776b",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01CR02"
+      },
+      "cc:periodEnd": {
+        "@value": "2026-05-07T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:periodStart": {
+        "@value": "2026-05-01T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms09",
+      "cc:status": "completed",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/9df2fd42ec0c76bff7f5fb8f2e2ad14319faa3fd11fa197e7401cea6aa1a5d4a",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01AA02"
+      },
+      "cc:periodEnd": {
+        "@value": "2026-06-08T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:periodStart": {
+        "@value": "2026-06-01T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms06",
+      "cc:status": "entered-in-error",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/a74bd798632864faca71469a0b7e6f32b1a3e10f696fbb18b7f94722e6229d43",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ObservationRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-EXR-002"
+      },
+      "cc:effectiveAt": {
+        "@value": "2026-11-09T07:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:observationKind": "exercise",
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Observation",
+      "cc:sourceResource": "Observation/ex2",
+      "cc:status": "final",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:unit": "km",
+      "cc:valueQuantity": {
+        "@value": 3.2,
+        "@type": "xsd:decimal"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/c4c31781b0eb918cf2950667437d9a0ddd500c386eb7576b6c45ca6dbb29b995",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ObservationRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-EXR-001"
+      },
+      "cc:effectiveAt": {
+        "@value": "2026-11-02T07:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:observationKind": "exercise",
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Observation",
+      "cc:sourceResource": "Observation/ex1",
+      "cc:status": "final",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:unit": "min",
+      "cc:valueQuantity": {
+        "@value": 45.0,
+        "@type": "xsd:decimal"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/cd8291bbdd50ce5a9b100fdfa3ad59a44fc87f2da17124e52c71380ebbe9ff3a",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:ObservationRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-SYM-001"
+      },
+      "cc:effectiveAt": {
+        "@value": "2026-08-01T08:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:observationKind": "symptom",
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "Observation",
+      "cc:sourceResource": "Observation/sym0",
+      "cc:status": "final",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:unit": "score",
+      "cc:valueQuantity": {
+        "@value": 6.0,
+        "@type": "xsd:decimal"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/d48670f3190bb9e2089efd7c3c09d6bc712381fab2eeb214643155d065a2a5ca",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01XE01"
+      },
+      "cc:periodEnd": {
+        "@value": "2026-03-09T23:59:59Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:periodStart": {
+        "@value": "2026-03-02T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms04",
+      "cc:status": "completed",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/df10edf9ff8b95ab89e81a0528f007d22933af4118891dea4f6a3af682c80b8e",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01FA09"
+      },
+      "cc:periodStart": {
+        "@value": "2026-11-20T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms08",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/ef6c0ac5eee0bd0c7734c06a47e1157f11ae39a10f5365fb94063fabda38d088",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01DB01"
+      },
+      "cc:periodEnd": {
+        "@value": "2026-12-08T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:periodStart": {
+        "@value": "2026-12-01T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms07",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/f15c2c45295c388a14705756d4224baf3bdcc56cef09506625b9a0a09e4c3396",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/J01CA04"
+      },
+      "cc:periodEnd": {
+        "@value": "2025-11-30T23:59:59Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:periodStart": {
+        "@value": "2025-11-20T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms03",
+      "cc:status": "completed",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    },
+    {
+      "@id": "https://careconsent.example/id/version/f1fb5096ea4bc7f1dc6ae1971e52783ce310e6d339ca89bcda94978e9e8d42e0",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:AllergyRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/demo/LC-ALG-003"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "AllergyIntolerance",
+      "cc:sourceResource": "AllergyIntolerance/a03",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      },
+      "cc:verificationStatus": "entered-in-error"
+    },
+    {
+      "@id": "https://careconsent.example/id/version/fca8e7e412c23f4a20dbc00a57e92119043ed868d48bbcbcdd111cf825d9d2cd",
+      "@type": [
+        "cc:HealthRecordVersion",
+        "cc:MedicationStatementRecord"
+      ],
+      "cc:concept": {
+        "@id": "https://careconsent.example/cs/atc/A10BA02"
+      },
+      "cc:periodStart": {
+        "@value": "2015-06-15T00:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:recordedAt": {
+        "@value": "2026-11-06T09:00:00Z",
+        "@type": "xsd:dateTime"
+      },
+      "cc:resourceType": "MedicationStatement",
+      "cc:sourceResource": "MedicationStatement/ms01",
+      "cc:status": "active",
+      "cc:subject": {
+        "@id": "https://careconsent.example/id/patient/P01"
+      }
+    }
+  ]
+}

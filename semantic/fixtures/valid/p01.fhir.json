@@ -1,0 +1,812 @@
+{
+  "resourceType": "Bundle",
+  "id": "synthetic-P01",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P01",
+        "birthDate": "1968-04-12"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms01",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms01",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "active",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "A10BA02"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2015-06-15T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms02",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms02",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01MA02"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2025-11-24T00:00:00Z",
+          "end": "2025-12-01T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms03",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms03",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01CA04"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2025-11-20T00:00:00Z",
+          "end": "2025-11-30T23:59:59Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms04",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms04",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01XE01"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2026-03-02T00:00:00Z",
+          "end": "2026-03-09T23:59:59Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms05",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms05",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01FA10"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2026-10-05T00:00:00Z",
+          "end": "2026-10-10T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms06",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms06",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "entered-in-error",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01AA02"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2026-06-01T00:00:00Z",
+          "end": "2026-06-08T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms07",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms07",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "active",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01DB01"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2026-12-01T00:00:00Z",
+          "end": "2026-12-08T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms08",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms08",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "active",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01FA09"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2026-11-20T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms09",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms09",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01CR02"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2026-05-01T00:00:00Z",
+          "end": "2026-05-07T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/ms10",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "ms10",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "intended",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01EA01"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "start": "2026-11-25T00:00:00Z"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c01",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c01",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        },
+        "onsetDateTime": "2015-06-01"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c02",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c02",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-002"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        },
+        "onsetDateTime": "2017-02-20"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c03",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c03",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "resolved"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-003"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        },
+        "onsetDateTime": "2026-03-01"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c04",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c04",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "inactive"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-004"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        },
+        "onsetDateTime": "2001-09-01"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c05",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c05",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "entered-in-error"
+            }
+          ]
+        },
+        "onsetDateTime": "2015-06-01"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:AllergyIntolerance/a01",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "a01",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-ALG-001"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:AllergyIntolerance/a02",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "a02",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "inactive"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-ALG-002"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:AllergyIntolerance/a03",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "a03",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-ALG-003"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "entered-in-error"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/sym0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "sym0",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "https://careconsent.example/cs/observation-kind",
+                "code": "symptom"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-SYM-001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectiveDateTime": "2026-08-01T08:00:00Z",
+        "valueQuantity": {
+          "value": 6,
+          "unit": "score"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/sym1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "sym1",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "https://careconsent.example/cs/observation-kind",
+                "code": "symptom"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-SYM-001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectiveDateTime": "2026-10-20T08:00:00Z",
+        "valueQuantity": {
+          "value": 3,
+          "unit": "score"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/sym2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "sym2",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "https://careconsent.example/cs/observation-kind",
+                "code": "symptom"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-SYM-002"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectiveDateTime": "2026-11-15T09:30:00Z"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/ex0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ex0",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "activity"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-EXR-003"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectiveDateTime": "2026-09-20T17:00:00Z",
+        "valueQuantity": {
+          "value": 25,
+          "unit": "km"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/ex1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ex1",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "activity"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-EXR-001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectiveDateTime": "2026-11-02T07:00:00Z",
+        "valueQuantity": {
+          "value": 45,
+          "unit": "min"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/ex2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ex2",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "activity"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-EXR-002"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectiveDateTime": "2026-11-09T07:00:00Z",
+        "valueQuantity": {
+          "value": 3.2,
+          "unit": "km"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/ex3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ex3",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "activity"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-EXR-002"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectiveDateTime": "2026-11-16T07:00:00Z",
+        "valueQuantity": {
+          "value": 2500,
+          "unit": "m"
+        }
+      }
+    }
+  ]
+}
