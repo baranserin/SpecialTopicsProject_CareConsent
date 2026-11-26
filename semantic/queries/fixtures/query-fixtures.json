@@ -1,0 +1,160 @@
+[
+  {
+    "id": "QF01",
+    "template": "T1",
+    "patient": "P01",
+    "window": [
+      "2025-12-01T00:00:00Z",
+      "2026-12-01T00:00:00Z"
+    ],
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [
+      "P01/ms08",
+      "P01/ms05",
+      "P01/ms09",
+      "P01/ms04",
+      "P01/ms02"
+    ],
+    "why": "Antibiotic periods overlapping [2025-12-01, 2026-12-01). ms02 ends exactly at the window start (included, closed period end); ms08 is ongoing. Excluded: ms01 non-antibiotic, ms03 ends 1 s early, ms06 entered-in-error, ms07 starts exactly at window end, ms10 only intended."
+  },
+  {
+    "id": "QF02",
+    "template": "T1",
+    "patient": "P01",
+    "window": [
+      "2025-12-01T00:00:00Z",
+      "2026-12-01T00:00:00Z"
+    ],
+    "grant": {
+      "mode": "versions",
+      "versions": [
+        "P01/ms01",
+        "P01/ms04",
+        "P01/ms05"
+      ]
+    },
+    "expected": [
+      "P01/ms05",
+      "P01/ms04"
+    ],
+    "why": "Grant lists only ms01, ms04 and ms05. Antibiotics ms02, ms08 and ms09 exist but are outside the grant, so they never enter the temporary dataset."
+  },
+  {
+    "id": "QF03",
+    "template": "T1",
+    "patient": "P03",
+    "window": [
+      "2025-12-01T00:00:00Z",
+      "2026-12-01T00:00:00Z"
+    ],
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [],
+    "why": "Patient with no antibiotic records: empty result (the API distinguishes this from denial)."
+  },
+  {
+    "id": "QF04",
+    "template": "T1",
+    "patient": "P01",
+    "window": [
+      "2026-03-09T00:00:00Z",
+      "2026-10-05T00:00:00Z"
+    ],
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [
+      "P01/ms09",
+      "P01/ms04"
+    ],
+    "why": "ms04 ends 2026-03-09T23:59:59Z, after the window start; ms05 starts exactly at the window end and is excluded."
+  },
+  {
+    "id": "QF05",
+    "template": "T2",
+    "patient": "P01",
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [
+      "P01/c01",
+      "P01/c02"
+    ],
+    "why": "c01, c02 active. c03 resolved, c04 inactive, c05 active but entered-in-error."
+  },
+  {
+    "id": "QF06",
+    "template": "T2",
+    "patient": "P03",
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [],
+    "why": "Only an inactive condition exists: empty result."
+  },
+  {
+    "id": "QF07",
+    "template": "T3",
+    "patient": "P01",
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [
+      "P01/a01"
+    ],
+    "why": "a01 active. a02 inactive, a03 active but entered-in-error."
+  },
+  {
+    "id": "QF08",
+    "template": "T3",
+    "patient": "P01",
+    "grant": {
+      "mode": "versions",
+      "versions": [
+        "P01/a02",
+        "P01/a03",
+        "P01/c01"
+      ]
+    },
+    "expected": [],
+    "why": "The only matching allergy (a01) is not granted: the permitted graph holds no matching record."
+  },
+  {
+    "id": "QF09",
+    "template": "T4",
+    "patient": "P01",
+    "window": [
+      "2026-10-01T00:00:00Z",
+      "2026-12-01T00:00:00Z"
+    ],
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [
+      "P01/sym2",
+      "P01/sym1"
+    ],
+    "why": "Symptoms inside the window, newest first. sym2 has no value or unit (optional fields missing); sym0 (August) is outside."
+  },
+  {
+    "id": "QF10",
+    "template": "T5",
+    "patient": "P01",
+    "window": [
+      "2026-10-01T00:00:00Z",
+      "2026-12-01T00:00:00Z"
+    ],
+    "grant": {
+      "mode": "all"
+    },
+    "expected": [
+      "P01/ex3",
+      "P01/ex2",
+      "P01/ex1"
+    ],
+    "why": "Exercise observations in the window: 2500 m, 3.2 km and 45 min are returned as stored (no unit conversion). ex0 (September) is outside."
+  }
+]
