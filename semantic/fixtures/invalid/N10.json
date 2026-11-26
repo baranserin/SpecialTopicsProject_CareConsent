@@ -1,0 +1,40 @@
+{
+  "resourceType": "Bundle",
+  "id": "negative",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P01",
+        "birthDate": "1968-04-12"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationStatement/m1",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "m1",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "completed",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "J01XE01"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "effectivePeriod": {
+          "end": "2026-03-09T00:00:00Z"
+        }
+      }
+    }
+  ]
+}

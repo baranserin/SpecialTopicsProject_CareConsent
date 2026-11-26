@@ -1,0 +1,43 @@
+{
+  "resourceType": "Bundle",
+  "id": "negative",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P01",
+        "birthDate": "1968-04-12"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:AllergyIntolerance/a1",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "a1",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-ALG-001"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

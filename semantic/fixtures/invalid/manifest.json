@@ -1,0 +1,122 @@
+[
+  {
+    "file": "N01.json",
+    "expectedRule": "R02",
+    "expectedField": "Condition.subject",
+    "description": "Condition without patient reference"
+  },
+  {
+    "file": "N02.json",
+    "expectedRule": "R02",
+    "expectedField": "MedicationStatement.subject",
+    "description": "MedicationStatement without patient reference"
+  },
+  {
+    "file": "N03.json",
+    "expectedRule": "R02",
+    "expectedField": "AllergyIntolerance.patient",
+    "description": "AllergyIntolerance without patient reference"
+  },
+  {
+    "file": "N04.json",
+    "expectedRule": "R02",
+    "expectedField": "Observation.subject",
+    "description": "Observation without patient reference"
+  },
+  {
+    "file": "N05.json",
+    "expectedRule": "R03",
+    "expectedField": "Condition.subject",
+    "description": "Condition refers to Patient/NOPE which is not in the bundle"
+  },
+  {
+    "file": "N06.json",
+    "expectedRule": "R01",
+    "expectedField": "Encounter",
+    "description": "Unsupported resource type Encounter"
+  },
+  {
+    "file": "N07.json",
+    "expectedRule": "R01",
+    "expectedField": "MedicationRequest",
+    "description": "Prescription (MedicationRequest) is not accepted as recorded use"
+  },
+  {
+    "file": "N08.json",
+    "expectedRule": "R10",
+    "expectedField": "Observation.valueQuantity.value",
+    "description": "Observation value is the string 'high'"
+  },
+  {
+    "file": "N09.json",
+    "expectedRule": "R08",
+    "expectedField": "MedicationStatement.effectivePeriod",
+    "description": "Medication period ends before it starts"
+  },
+  {
+    "file": "N10.json",
+    "expectedRule": "R09",
+    "expectedField": "MedicationStatement.effectivePeriod.start",
+    "description": "Medication period has no start"
+  },
+  {
+    "file": "N11.json",
+    "expectedRule": "R06",
+    "expectedField": "Condition.onsetDateTime",
+    "description": "Onset date 2026-13-45 is not a calendar date"
+  },
+  {
+    "file": "N12.json",
+    "expectedRule": "R07",
+    "expectedField": "Condition.clinicalStatus.coding.code",
+    "description": "Unknown clinicalStatus code 'maybe'"
+  },
+  {
+    "file": "N13.json",
+    "expectedRule": "R07",
+    "expectedField": "MedicationStatement.status",
+    "description": "Unknown medication status 'taking-ish'"
+  },
+  {
+    "file": "N14.json",
+    "expectedRule": "R11",
+    "expectedField": "MedicationStatement.medicationCodeableConcept.coding.code",
+    "description": "ATC code 'J01' is incomplete"
+  },
+  {
+    "file": "N15.json",
+    "expectedRule": "R09",
+    "expectedField": "Observation.effectiveDateTime",
+    "description": "Observation without effective time"
+  },
+  {
+    "file": "N16.json",
+    "expectedRule": "R13",
+    "expectedField": "Observation.valueQuantity.unit",
+    "description": "Observation value without unit"
+  },
+  {
+    "file": "N17.json",
+    "expectedRule": "R09",
+    "expectedField": "AllergyIntolerance.clinicalStatus.coding.code",
+    "description": "Allergy without clinicalStatus"
+  },
+  {
+    "file": "N18.json",
+    "expectedRule": "R12",
+    "expectedField": "Patient.birthDate",
+    "description": "Patient born after the evaluation date"
+  },
+  {
+    "file": "N19.json",
+    "expectedRule": "R05",
+    "expectedField": "Condition.modifierExtension",
+    "description": "Resource carries an unsupported modifierExtension"
+  },
+  {
+    "file": "N20.json",
+    "expectedRule": "R04",
+    "expectedField": "Condition.id",
+    "description": "Two Condition resources share the id c1"
+  }
+]

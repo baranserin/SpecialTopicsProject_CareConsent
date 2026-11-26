@@ -1,0 +1,49 @@
+{
+  "resourceType": "Bundle",
+  "id": "negative",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P01",
+        "birthDate": "1968-04-12"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Observation/o1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "o1",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "https://careconsent.example/cs/observation-kind",
+                "code": "symptom"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-SYM-001"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-10-20T08:00:00Z",
+        "valueQuantity": {
+          "value": 3,
+          "unit": "score"
+        }
+      }
+    }
+  ]
+}

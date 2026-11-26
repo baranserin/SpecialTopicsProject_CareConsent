@@ -1,0 +1,25 @@
+{
+  "resourceType": "Bundle",
+  "id": "negative",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P01",
+        "birthDate": "1968-04-12"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:MedicationRequest/r1",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "r1",
+        "subject": {
+          "reference": "Patient/P01"
+        }
+      }
+    }
+  ]
+}

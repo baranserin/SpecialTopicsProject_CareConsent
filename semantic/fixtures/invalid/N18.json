@@ -1,0 +1,15 @@
+{
+  "resourceType": "Bundle",
+  "id": "negative",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P01",
+        "birthDate": "2030-01-01"
+      }
+    }
+  ]
+}

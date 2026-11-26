@@ -1,0 +1,87 @@
+{
+  "resourceType": "Bundle",
+  "id": "negative",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:fixture:Patient/P01",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "P01",
+        "birthDate": "1968-04-12"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c1",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        },
+        "onsetDateTime": "2015-06-01"
+      }
+    },
+    {
+      "fullUrl": "urn:fixture:Condition/c1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c1",
+        "meta": {
+          "lastUpdated": "2026-11-06T09:00:00Z"
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "https://careconsent.example/cs/demo-catalogue/v0.1",
+              "code": "LC-COND-001"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/P01"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed"
+            }
+          ]
+        },
+        "onsetDateTime": "2015-06-01"
+      }
+    }
+  ]
+}
