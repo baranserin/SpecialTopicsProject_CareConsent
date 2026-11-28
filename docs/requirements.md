@@ -86,7 +86,7 @@ They do not represent completed implementation or passed tests.
 | ID | Requirement | Related Story |
 | --- | --- | --- |
 | FR-10 | The system shall allow clinicians to request access and patients to approve or refuse requests for selected health record versions. | S3, S5 |
-| FR-11 | The system shall allow a patient to sign a consent grant specifying the recipient, purpose, explicit record-version list and expiry time. The immutable version list shall be bound through a scope commitment. | S3 |
+| FR-11 | The system shall allow a patient to sign a consent grant specifying the recipient, purpose, explicit record-version list and expiry time. The immutable version list shall be bound through a scope commitment, and the gateway shall verify the requested scope against that commitment before authorising access. | S3 |
 | FR-12 | The system shall deny access if the grant is absent, revoked, expired, assigned to another recipient or purpose, or excludes any requested record version. Access at the exact expiry time shall be denied. | S3, S4 |
 | FR-13 | The system shall allow patients to revoke existing grants. Once revocation is confirmed, subsequent release checks shall deny access under that grant. | S4 |
 | FR-14 | The system shall display pending, active, refused, expired and revoked access states without revealing health fields before permission becomes active. | S5 |
@@ -125,15 +125,9 @@ They do not represent completed implementation or passed tests.
 | FR-27 | The system shall distinguish between an empty permitted result, denied access and service unavailability, and support safe retries without duplicate settlement. | S7, S12 |
 
 
-----------------------------------
+  
 
-
-
-----------------------------------
-
-
-
-----------------------------------
+  
 
 
 ## 3. Non-functional Requirements
