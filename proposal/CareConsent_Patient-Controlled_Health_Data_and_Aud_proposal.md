@@ -43,7 +43,7 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 
 ### Work log
 
-4 entries; chain intact; head fingerprint 161cac1f4c11f3ef9782f06c8a859ea7922148f3d7638b87fb3d87b51b653656.
+5 entries; chain intact; head fingerprint 3f82ad5dd5a87d5c571f6e3fb601e5926c2183d526d6330856efc2811100f685.
 
 | No. | Time (UTC) | Member | Process | Hours | What | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -51,6 +51,7 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 | 2 | 2026-11-24 16:45 | Hasan Samet Yurtbilir | Implementation | 2.5 | Initialized the Foundry workspace, implemented RecordRegistry and ConsentManager contracts with Anvil deployment scripts and exported ABIs, and verified 48 unit and access-control matrix tests. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/3ac6d45b36e64860511a0d18abd2cc83d61e0872 |
 | 3 | 2026-11-25 10:41 | Hasan Samet Yurtbilir | Design definition | 0.75 | Finalized the ResearchSettlement contract interface, test-credit escrow lifecycle, request states, error semantics, and Anvil seeding conventions in docs/contract-interface.md. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/28a2607f98cf6d42a1a618fecbf2298de748bea4 |
 | 4 | 2026-11-25 10:41 | Hasan Samet Yurtbilir | Implementation | 2 | Implemented ResearchSettlement with idempotent gateway-attested payouts, refusal and expiry refunds, updated Anvil deployment script and ABI, and verified 23 settlement tests alongside all 48 core tests. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/380e318a16fba737509c37980089246b1cf241b0 |
+| 5 | 2026-11-28 15:23 | Enes Malik Çolak | System/software requirements definition | 2.5 | Defined three user personas, documented 27 functional and 20 non-functional requirements, specified measurable acceptance targets, and reviewed documentation against the CareConsent project proposal. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/pull/6 |
 
 ## 1. Mission
 
@@ -352,6 +353,6 @@ Project grade 92.7 (60%), team grade 86 (20%), individual contribution (20%).
 | Bahattin Baran Serin | 2300006459 | 22 | 77.2 |
 | Elif Naz Akdora | 2300003761 | 22 | 77.2 |
 | Ayset Mammadova | 2300003102 | 22 | 77.2 |
-| Enes Malik Çolak | 2200005577 | 22 | 77.2 |
+| Enes Malik Çolak | 2200005577 | 56 | 84 |
 | Hasan Samet Yurtbilir | 2100004509 | 100 | 92.8 |
 

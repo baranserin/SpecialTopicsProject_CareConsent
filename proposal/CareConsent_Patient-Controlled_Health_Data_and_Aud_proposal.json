@@ -4,7 +4,7 @@
  "stage": "proposal",
  "stageLabel": "Proposal",
  "stageFills": "The plan: who the system is for, what it will do, how it will be built and checked, and who does what. Nothing is implemented yet: the Delivery and evidence part stays empty.",
- "saved": "2026-11-25T10:42:28.101Z",
+ "saved": "2026-11-28T15:24:56.392Z",
  "proposal": {
   "course": "SEN0401",
   "semester": "2026-2027 Fall",
@@ -215,6 +215,20 @@
     "ref": "",
     "prev": "27b6a9cbbd334f1054ed50f771031a4a64456cd60a3808b18bf938682519a622",
     "hash": "161cac1f4c11f3ef9782f06c8a859ea7922148f3d7638b87fb3d87b51b653656"
+   },
+   {
+    "seq": 5,
+    "ts": "2026-11-28T15:23:27.658Z",
+    "member": "Enes Malik Çolak",
+    "process": "P03",
+    "story": "",
+    "hours": 2.5,
+    "description": "Defined three user personas, documented 27 functional and 20 non-functional requirements, specified measurable acceptance targets, and reviewed documentation against the CareConsent project proposal.",
+    "evidence": "https://github.com/baranserin/SpecialTopicsProject_CareConsent/pull/6",
+    "kind": "work",
+    "ref": "",
+    "prev": "161cac1f4c11f3ef9782f06c8a859ea7922148f3d7638b87fb3d87b51b653656",
+    "hash": "3f82ad5dd5a87d5c571f6e3fb601e5926c2183d526d6330856efc2811100f685"
    }
   ],
   "customers": [],
