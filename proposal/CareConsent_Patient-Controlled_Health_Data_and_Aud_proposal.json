@@ -4,7 +4,7 @@
  "stage": "proposal",
  "stageLabel": "Proposal",
  "stageFills": "The plan: who the system is for, what it will do, how it will be built and checked, and who does what. Nothing is implemented yet: the Delivery and evidence part stays empty.",
- "saved": "2026-11-28T15:24:56.392Z",
+ "saved": "2026-11-28T15:45:28.234Z",
  "proposal": {
   "course": "SEN0401",
   "semester": "2026-2027 Fall",
@@ -229,6 +229,34 @@
     "ref": "",
     "prev": "161cac1f4c11f3ef9782f06c8a859ea7922148f3d7638b87fb3d87b51b653656",
     "hash": "3f82ad5dd5a87d5c571f6e3fb601e5926c2183d526d6330856efc2811100f685"
+   },
+   {
+    "seq": 6,
+    "ts": "2026-11-28T15:39:04.554Z",
+    "member": "Elif Naz Akdora",
+    "process": "P05",
+    "story": "S8",
+    "hours": 0.5,
+    "description": "Documented the screen flow, wireframes and UI state rules for patient, clinician and researcher screens, tracing each screen to its proposal story and contract function.",
+    "evidence": "https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/d96d4d0d00f8f6d46ed5b745e1f9cebf3af87eb0",
+    "kind": "work",
+    "ref": "",
+    "prev": "3f82ad5dd5a87d5c571f6e3fb601e5926c2183d526d6330856efc2811100f685",
+    "hash": "a211306967b69850f3b6634bd519d57cb470982aee1457c5bc75264a66368871"
+   },
+   {
+    "seq": 7,
+    "ts": "2026-11-28T15:40:46.443Z",
+    "member": "Elif Naz Akdora",
+    "process": "P07",
+    "story": "S3",
+    "hours": 1,
+    "description": "Scaffolded the Vite React TypeScript frontend with contract-aligned data models, synthetic patient records, version selection and a scope commitment preview.",
+    "evidence": "https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/e38367b51a6d30af7f55f2d190f9014572686cd2",
+    "kind": "work",
+    "ref": "",
+    "prev": "a211306967b69850f3b6634bd519d57cb470982aee1457c5bc75264a66368871",
+    "hash": "7dc9f2e788a9ddde49fc745fa8ff7e777673714f9cd85fa974185603deef1682"
    }
   ],
   "customers": [],

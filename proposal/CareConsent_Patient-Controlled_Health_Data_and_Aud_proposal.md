@@ -43,7 +43,7 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 
 ### Work log
 
-5 entries; chain intact; head fingerprint 3f82ad5dd5a87d5c571f6e3fb601e5926c2183d526d6330856efc2811100f685.
+7 entries; chain intact; head fingerprint 7dc9f2e788a9ddde49fc745fa8ff7e777673714f9cd85fa974185603deef1682.
 
 | No. | Time (UTC) | Member | Process | Hours | What | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -52,6 +52,8 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 | 3 | 2026-11-25 10:41 | Hasan Samet Yurtbilir | Design definition | 0.75 | Finalized the ResearchSettlement contract interface, test-credit escrow lifecycle, request states, error semantics, and Anvil seeding conventions in docs/contract-interface.md. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/28a2607f98cf6d42a1a618fecbf2298de748bea4 |
 | 4 | 2026-11-25 10:41 | Hasan Samet Yurtbilir | Implementation | 2 | Implemented ResearchSettlement with idempotent gateway-attested payouts, refusal and expiry refunds, updated Anvil deployment script and ABI, and verified 23 settlement tests alongside all 48 core tests. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/380e318a16fba737509c37980089246b1cf241b0 |
 | 5 | 2026-11-28 15:23 | Enes Malik Çolak | System/software requirements definition | 2.5 | Defined three user personas, documented 27 functional and 20 non-functional requirements, specified measurable acceptance targets, and reviewed documentation against the CareConsent project proposal. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/pull/6 |
+| 6 | 2026-11-28 15:39 | Elif Naz Akdora | Design definition | 0.5 | Documented the screen flow, wireframes and UI state rules for patient, clinician and researcher screens, tracing each screen to its proposal story and contract function. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/d96d4d0d00f8f6d46ed5b745e1f9cebf3af87eb0 |
+| 7 | 2026-11-28 15:40 | Elif Naz Akdora | Implementation | 1 | Scaffolded the Vite React TypeScript frontend with contract-aligned data models, synthetic patient records, version selection and a scope commitment preview. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/e38367b51a6d30af7f55f2d190f9014572686cd2 |
 
 ## 1. Mission
 
@@ -351,7 +353,7 @@ Project grade 92.7 (60%), team grade 86 (20%), individual contribution (20%).
 | Member | Student number | Individual | Member grade |
 | --- | --- | --- | --- |
 | Bahattin Baran Serin | 2300006459 | 22 | 77.2 |
-| Elif Naz Akdora | 2300003761 | 22 | 77.2 |
+| Elif Naz Akdora | 2300003761 | 100 | 92.8 |
 | Ayset Mammadova | 2300003102 | 22 | 77.2 |
 | Enes Malik Çolak | 2200005577 | 56 | 84 |
 | Hasan Samet Yurtbilir | 2100004509 | 100 | 92.8 |
