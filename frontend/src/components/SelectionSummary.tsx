@@ -9,6 +9,7 @@ interface SelectionSummaryProps {
   patientAddress: Address;
   /** True only with a signed-in wallet session for the patient account. */
   canSign: boolean;
+  onGrantCreated?: () => void;
   onRemove: (versionId: string) => void;
   onClear: () => void;
 }
@@ -18,6 +19,7 @@ export function SelectionSummary({
   selected,
   patientAddress,
   canSign,
+  onGrantCreated,
   onRemove,
   onClear,
 }: SelectionSummaryProps) {
@@ -95,7 +97,10 @@ export function SelectionSummary({
               versionCount={items.length}
               canSign={canSign}
               onCancel={() => setSharing(false)}
-              onCreated={() => onClear()}
+              onCreated={() => {
+                onGrantCreated?.();
+                onClear();
+              }}
             />
           ) : (
             <button

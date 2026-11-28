@@ -27,10 +27,11 @@ interface PatientRecordsProps {
   patientAddress: Address;
   /** True only with a signed-in wallet session for the patient account. */
   canSign: boolean;
+  onGrantCreated?: () => void;
 }
 
 /** Record list, version selection and scope preview. Rendered only for an allowed viewer. */
-export function PatientRecords({ patientAddress, canSign }: PatientRecordsProps) {
+export function PatientRecords({ patientAddress, canSign, onGrantCreated }: PatientRecordsProps) {
   const [scenario, setScenario] = useState<MockScenario>(initialScenario);
   const [load, setLoad] = useState<LoadState>({ kind: "loading" });
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -128,6 +129,7 @@ export function PatientRecords({ patientAddress, canSign }: PatientRecordsProps)
             selected={selected}
             patientAddress={patientAddress}
             canSign={canSign}
+            onGrantCreated={onGrantCreated}
             onRemove={toggle}
             onClear={() => setSelected(new Set())}
           />

@@ -5,6 +5,7 @@ import { AccessDenied } from "./components/StatusMessage";
 import { ChainStatusPanel } from "./components/ChainStatusPanel";
 import { WalletControls, WalletNotices } from "./components/WalletControls";
 import { PatientRecords } from "./pages/PatientRecords";
+import { GrantList } from "./components/GrantList";
 import { useWallet } from "./wallet/useWallet";
 import { ROLE_LABEL } from "./wallet/wallet";
 
@@ -17,9 +18,18 @@ import { ROLE_LABEL } from "./wallet/wallet";
  */
 type Access = "owner" | "preview" | "other" | "signed-out";
 
+type View = "records" | "grants";
+const VIEWS: { id: View; label: string }[] = [
+  { id: "records", label: "Records" },
+  { id: "grants", label: "My grants" },
+];
+
 export default function App() {
   const wallet = useWallet();
   const [preview, setPreview] = useState(false);
+  const [view, setView] = useState<View>("records");
+  // Bumped when a grant is created, so the grants tab reloads.
+  const [grantsVersion, setGrantsVersion] = useState(0);
 
   const session = wallet.session;
   const access: Access = session
@@ -71,9 +81,33 @@ export default function App() {
           </div>
         )}
 
-        {(access === "owner" || access === "preview") && <PatientRecords
+        {access === "owner" && (
+          <nav className="segmented demo-switch" aria-label="Patient pages">
+            {VIEWS.map((v) => (
+              <button
+                key={v.id}
+                type="button"
+                aria-pressed={view === v.id}
+                className={view === v.id ? "is-on" : ""}
+                onClick={() => setView(v.id)}
+              >
+                {v.label}
+              </button>
+            ))}
+          </nav>
+        )}
+
+        {access === "owner" && view === "grants" && wallet.onExpectedChain && (
+          <GrantList patient={MOCK_PATIENT.address} refreshKey={grantsVersion} />
+        )}
+        {access === "owner" && view === "grants" && !wallet.onExpectedChain && (
+          <AccessDenied title="Wrong network" detail="Switch MetaMask to the local Anvil network to see your grants." />
+        )}
+
+        {((access === "owner" && view === "records") || access === "preview") && <PatientRecords
             patientAddress={MOCK_PATIENT.address}
             canSign={access === "owner" && wallet.onExpectedChain}
+            onGrantCreated={() => setGrantsVersion((v) => v + 1)}
           />}
 
         {access === "other" && session && (

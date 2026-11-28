@@ -20,7 +20,10 @@ Patient dashboard and access history (React + TypeScript + MetaMask).
 - Grant creation (P3): choose a recipient and expiry for the selected versions, sign grantAccess in MetaMask,
   see each transaction phase, and read the confirmed grant back from the chain
 
-Not implemented yet: grant revocation and grant list screens, clinician and researcher screens, gateway
+- **My grants** page (P4): grants read from the chain (`GrantCreated` events) with Active / Expired /
+  Revoked status, and revoke through MetaMask with an honest limits notice
+
+Not implemented yet: clinician and researcher screens, gateway
 API integration.
 
 ## Run locally
@@ -154,6 +157,5 @@ with the backend API.
 ## Planned next steps
 
 - Replace mock sign-in with the gateway challenge/verify endpoints
-- Revoke grants and list them (`revokeGrant`)
 - Verify receipts against their on-chain commitments
 - Clinician and researcher screens
