@@ -71,7 +71,10 @@ export default function App() {
           </div>
         )}
 
-        {(access === "owner" || access === "preview") && <PatientRecords patientAddress={MOCK_PATIENT.address} />}
+        {(access === "owner" || access === "preview") && <PatientRecords
+            patientAddress={MOCK_PATIENT.address}
+            canSign={access === "owner" && wallet.onExpectedChain}
+          />}
 
         {access === "other" && session && (
           <AccessDenied

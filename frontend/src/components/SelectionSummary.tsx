@@ -1,11 +1,14 @@
-import { useMemo } from "react";
-import { computeScopeCommitment, type Address, type HealthRecord } from "../types/models";
+import { useMemo, useState } from "react";
+import { computeScopeCommitment, type Address, type Bytes32, type HealthRecord } from "../types/models";
 import { shortHex } from "./format";
+import { GrantForm } from "./GrantForm";
 
 interface SelectionSummaryProps {
   records: HealthRecord[];
   selected: ReadonlySet<string>;
   patientAddress: Address;
+  /** True only with a signed-in wallet session for the patient account. */
+  canSign: boolean;
   onRemove: (versionId: string) => void;
   onClear: () => void;
 }
@@ -14,6 +17,7 @@ export function SelectionSummary({
   records,
   selected,
   patientAddress,
+  canSign,
   onRemove,
   onClear,
 }: SelectionSummaryProps) {
@@ -26,6 +30,8 @@ export function SelectionSummary({
       ),
     [records, selected],
   );
+
+  const [sharing, setSharing] = useState(false);
 
   const scope = useMemo((): { value: string } | { error: string } | null => {
     if (items.length === 0) return null;
@@ -82,9 +88,25 @@ export function SelectionSummary({
             )}
           </div>
 
-          <p className="small muted">
-            Choosing a recipient, purpose and expiry comes in the next step (grant creation).
-          </p>
+          {sharing && scope && "value" in scope ? (
+            <GrantForm
+              patient={patientAddress}
+              scopeCommitment={scope.value as Bytes32}
+              versionCount={items.length}
+              canSign={canSign}
+              onCancel={() => setSharing(false)}
+              onCreated={() => onClear()}
+            />
+          ) : (
+            <button
+              type="button"
+              className="btn btn-sm"
+              disabled={!scope || !("value" in scope)}
+              onClick={() => setSharing(true)}
+            >
+              Share selected versions…
+            </button>
+          )}
         </>
       )}
     </aside>

@@ -17,7 +17,10 @@ Patient dashboard and access history (React + TypeScript + MetaMask).
 - Shared transaction helper for MetaMask-signed contract calls (confirmation tracking and
   readable custom-error messages), ready for the grant screens
 
-Not implemented yet: grant creation/revocation screens, clinician and researcher screens, gateway
+- Grant creation (P3): choose a recipient and expiry for the selected versions, sign grantAccess in MetaMask,
+  see each transaction phase, and read the confirmed grant back from the chain
+
+Not implemented yet: grant revocation and grant list screens, clinician and researcher screens, gateway
 API integration.
 
 ## Run locally
@@ -151,6 +154,6 @@ with the backend API.
 ## Planned next steps
 
 - Replace mock sign-in with the gateway challenge/verify endpoints
-- Create and revoke grants with a MetaMask signature (using `runTransaction`)
+- Revoke grants and list them (`revokeGrant`)
 - Verify receipts against their on-chain commitments
 - Clinician and researcher screens
