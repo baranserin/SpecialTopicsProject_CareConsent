@@ -4,7 +4,7 @@
  "stage": "proposal",
  "stageLabel": "Proposal",
  "stageFills": "The plan: who the system is for, what it will do, how it will be built and checked, and who does what. Nothing is implemented yet: the Delivery and evidence part stays empty.",
- "saved": "2026-11-28T15:45:28.234Z",
+ "saved": "2026-11-28T16:16:22.298Z",
  "proposal": {
   "course": "SEN0401",
   "semester": "2026-2027 Fall",
@@ -257,6 +257,20 @@
     "ref": "",
     "prev": "a211306967b69850f3b6634bd519d57cb470982aee1457c5bc75264a66368871",
     "hash": "7dc9f2e788a9ddde49fc745fa8ff7e777673714f9cd85fa974185603deef1682"
+   },
+   {
+    "seq": 8,
+    "ts": "2026-11-28T16:15:29.056Z",
+    "member": "Elif Naz Akdora",
+    "process": "P07",
+    "story": "S3",
+    "hours": 1.5,
+    "description": "Implemented MetaMask connection, Anvil network checks, wallet challenge sign-in and contract availability checks for the patient workspace.",
+    "evidence": "https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/8e825a41d3ccf1a277746cdeb66c70268e129a5c",
+    "kind": "work",
+    "ref": "",
+    "prev": "7dc9f2e788a9ddde49fc745fa8ff7e777673714f9cd85fa974185603deef1682",
+    "hash": "593076a861b61da03f9c25f987a2e3c2278147912ed88e65c74936973e0e76ff"
    }
   ],
   "customers": [],

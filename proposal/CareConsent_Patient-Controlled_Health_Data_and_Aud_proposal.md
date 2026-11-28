@@ -43,7 +43,7 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 
 ### Work log
 
-7 entries; chain intact; head fingerprint 7dc9f2e788a9ddde49fc745fa8ff7e777673714f9cd85fa974185603deef1682.
+8 entries; chain intact; head fingerprint 593076a861b61da03f9c25f987a2e3c2278147912ed88e65c74936973e0e76ff.
 
 | No. | Time (UTC) | Member | Process | Hours | What | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -54,6 +54,7 @@ SEN0401 Special Topics: Blockchain · 2026-2027 Fall · Proposal · Method: BRSF
 | 5 | 2026-11-28 15:23 | Enes Malik Çolak | System/software requirements definition | 2.5 | Defined three user personas, documented 27 functional and 20 non-functional requirements, specified measurable acceptance targets, and reviewed documentation against the CareConsent project proposal. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/pull/6 |
 | 6 | 2026-11-28 15:39 | Elif Naz Akdora | Design definition | 0.5 | Documented the screen flow, wireframes and UI state rules for patient, clinician and researcher screens, tracing each screen to its proposal story and contract function. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/d96d4d0d00f8f6d46ed5b745e1f9cebf3af87eb0 |
 | 7 | 2026-11-28 15:40 | Elif Naz Akdora | Implementation | 1 | Scaffolded the Vite React TypeScript frontend with contract-aligned data models, synthetic patient records, version selection and a scope commitment preview. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/e38367b51a6d30af7f55f2d190f9014572686cd2 |
+| 8 | 2026-11-28 16:15 | Elif Naz Akdora | Implementation | 1.5 | Implemented MetaMask connection, Anvil network checks, wallet challenge sign-in and contract availability checks for the patient workspace. | https://github.com/baranserin/SpecialTopicsProject_CareConsent/commit/8e825a41d3ccf1a277746cdeb66c70268e129a5c |
 
 ## 1. Mission
 
