@@ -86,7 +86,7 @@ They do not represent completed implementation or passed tests.
 | ID | Requirement | Related Story |
 | --- | --- | --- |
 | FR-10 | The system shall allow clinicians to request access and patients to approve or refuse requests for selected health record versions. | S3, S5 |
-| FR-11 | The system shall allow a patient to sign a consent grant specifying the recipient, purpose, explicit record-version list and expiry time. The immutable version list shall be bound through a scope commitment, and the gateway shall verify the requested scope against that commitment before authorising access. | S3 |
+| FR-11 | The system shall allow a patient to sign a consent grant specifying the recipient, purpose, explicit record-version list and expiry time. The immutable version list shall be bound through a scope commitment, and the gateway shall verify the requested scope against that commitment before authorising access. | S3 |tam
 | FR-12 | The system shall deny access if the grant is absent, revoked, expired, assigned to another recipient or purpose, or excludes any requested record version. Access at the exact expiry time shall be denied. | S3, S4 |
 | FR-13 | The system shall allow patients to revoke existing grants. Once revocation is confirmed, subsequent release checks shall deny access under that grant. | S4 |
 | FR-14 | The system shall display pending, active, refused, expired and revoked access states without revealing health fields before permission becomes active. | S5 |
@@ -96,8 +96,8 @@ They do not represent completed implementation or passed tests.
 
 | ID | Requirement | Related Story |
 | --- | --- | --- |
-| FR-16 | The system shall allow authorised clinicians to execute five predefined SPARQL clinical query templates. | S6, S7 |
-| FR-17 | The system shall decrypt only authorised record versions into a temporary consent-scoped graph and return only the permitted result projection. | S6, S7 |
+| FR-16 | The system shall allow authorised clinicians to execute only five predefined, parameter-bound SPARQL clinical query templates. Arbitrary SPARQL text, update operations and SERVICE federation requests shall be rejected. | S6, S7 |
+| FR-17 | The system shall decrypt only authorised record versions into a temporary consent-scoped dataset and return only the permitted result projection. The temporary dataset shall be closed and discarded after both successful and failed operations. | S6, S7, S12 |
 | FR-18 | The antibiotic query shall identify permitted MedicationStatement records whose recorded use overlaps the previous twelve months, exclude entered-in-error records and include source dates and versions. A prescription alone shall not be treated as confirmed use. | S6 |
 | FR-19 | The four remaining templates shall return permitted active conditions, active allergies, dated symptom observations and exercise observations, with traceable source information. | S7 |
 
@@ -146,7 +146,7 @@ They do not represent completed implementation or passed tests.
 | ID | Requirement |
 | --- | --- |
 | NFR-05 | Clinical text, plaintext patient identifiers, encryption keys, wallet private keys and raw IPFS CIDs shall not be exposed through blockchain transactions or contract storage. |
-| NFR-06 | Routine application logs shall not contain plaintext clinical information or encryption keys. |
+| NFR-06 | Routine application logs shall not contain plaintext clinical information, plaintext patient identifiers, encryption keys, wallet private keys or raw IPFS CIDs. |
 | NFR-07 | Clinical query results and research exports shall contain only authorised patient records, record versions and permitted fields. No cross-patient or out-of-scope information shall be disclosed. |
 
 ### 3.3 Performance
