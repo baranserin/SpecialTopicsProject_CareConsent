@@ -1,9 +1,9 @@
-﻿/**
+/**
  * Patient-side ConsentManager calls: create a grant (grantAccess) and read it back.
  * The UI shows a grant as active only after `runTransaction` reports `confirmed`
  * (docs/design/frontend-screen-flow.md §3.3, P3).
  */
-import { hexlify, randomBytes } from "ethers";
+import { hexlify, randomBytes, type EventLog } from "ethers";
 import { getContract } from "./contracts";
 import { runTransaction, type TxState } from "./transactions";
 import { getBrowserProvider } from "../wallet/wallet";
@@ -97,3 +97,30 @@ export async function readGrant(grantId: Bytes32): Promise<{ grant: AccessGrant;
   };
 }
 
+
+export interface GrantRow {
+  grant: AccessGrant;
+  status: GrantStatus;
+}
+
+/** All grants created by `owner`, newest first, with their current on-chain status. */
+export async function listGrants(owner: Address): Promise<{ rows: GrantRow[]; chainTime: UnixSeconds }> {
+  const consent = getContract("ConsentManager", getBrowserProvider());
+  const events = await consent.queryFilter(consent.filters.GrantCreated(null, owner));
+  const ids = events.map((e) => (e as EventLog).args[0] as Bytes32);
+  const rows = await Promise.all(ids.map((id) => readGrant(id)));
+  rows.sort((a, b) => b.grant.grantedAt - a.grant.grantedAt);
+  return { rows, chainTime: await readChainTime() };
+}
+
+/** Signs and sends ConsentManager.revokeGrant. Revocation blocks future gateway releases only. */
+export function revokeGrant(grantId: Bytes32, owner: Address, onState: (s: TxState) => void): Promise<TxState> {
+  return runTransaction(
+    "Revoke grant",
+    async () => {
+      const signer = await getBrowserProvider().getSigner(owner);
+      return getContract("ConsentManager", signer).revokeGrant(grantId);
+    },
+    onState,
+  );
+}
